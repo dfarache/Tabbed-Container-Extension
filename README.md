@@ -1,5 +1,5 @@
-## Synopsis
-The Tabbed Container is a Qlik Extension that groups Sense objects in a container and displays tabs as a way of navigating through them. 
+## Qlik Sense Extension Tabbed Container
+The Tabbed Container is a Qlik Extension that groups Sense objects in a container and displays tabs as a way of navigating through them.
 
 ![Tabbed-Container-Extension](assets/img/extension_overview.JPG)
 
@@ -19,7 +19,7 @@ Additionally, the style of the body and the tabs may be easily modified through 
 ## How to use
 1. Copy the extension folder into your Qlik/Sense/Extensions folder.
 2. Set the values for the `(title,objectId)` you wish to display.
-3. Reload the sheet. 
+3. Reload the sheet.
 
 ## Contributing
 
