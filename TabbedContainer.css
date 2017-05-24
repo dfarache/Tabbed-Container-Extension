@@ -1,0 +1,139 @@
+.qv-object-TabbedContainer_v2 {
+  padding-right: 5px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  position: relative;
+  overflow: hidden;
+}
+
+.qv-object-TabbedContainer_v2 ul.tabs {
+  margin: 0;
+  padding: 0;
+  float: left;
+  list-style: none;
+  height: 32px;
+  width: 100%;
+}
+
+.qv-object-TabbedContainer_v2 ul.tabs li {
+  float: left;
+  margin: 0;
+  cursor: pointer;
+  padding: 0px 35px;
+  height: 27px;
+  line-height: 27px;
+  background-color: rgb(242, 242, 242);
+  border: 1px solid rgb(229, 229, 229);
+  color: black;
+  overflow: hidden;
+  position: relative;
+  margin-left: 5px;
+  border-radius: 3px;
+}
+
+.qv-object-TabbedContainer_v2 ul.tabs li:first-child {
+  margin-left: 0px;
+}
+
+.qv-object-TabbedContainer_v2 ul.tabs li:hover {
+  color: black;
+  font-weight: bold;
+}
+
+.qv-object-TabbedContainer_v2 ul.tabs li.active {
+  display: block;
+}
+
+.qv-object-TabbedContainer_v2 .tab_container {
+  border: 1px solid #ebc134;
+  border-radius: 5px;
+  clear: both;
+  float: left;
+  width: calc(100% - 3px);
+  background: transparent;
+  overflow: auto;
+  height: calc(100% - 33px);
+  position: absolute;
+  top: 32px;
+  padding-top: 1px;
+  z-index: 4;
+  box-sizing: border-box;
+}
+
+.qv-object-TabbedContainer_v2 .tab_container.expanded {
+  height: 100%;
+  top: -3px;
+}
+
+.qv-object-TabbedContainer_v2 .stacked .tab_container {
+  height: calc(100%-4px);
+}
+
+.qv-object-TabbedContainer_v2 .tab_content {
+  padding: 20px;
+  height: calc(100% - 40px);
+  display: none;
+}
+
+@media (max-height:700px) {
+  .qv-object-TabbedContainer_v2 .tab_content {
+    padding: 2px;
+    height: calc(100% - 4px);
+    display: none;
+  }
+}
+
+.qv-object-TabbedContainer_v2 .tab_drawer_heading {
+  display: none;
+}
+
+.qv-object-TabbedContainer_v2 .stacked ul.tabs li {
+  background-color: #f00;
+}
+
+.qv-object-TabbedContainer_v2 .stacked .tab_container {
+  top: 0;
+}
+
+.qv-object-TabbedContainer_v2 .stacked .tabs {
+  display: none!important;
+  height: 0;
+}
+
+.qv-object-TabbedContainer_v2 .stacked .tab_drawer_heading {
+  background-color: #FFFFFF;
+  color: #fff;
+  border-top: 1px solid #CFCFCF;
+  margin: 0;
+  padding: 5px;
+  display: block;
+  cursor: pointer;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  background-color: #666;
+}
+
+.qv-object-TabbedContainer_v2 .stacked .tab_drawer_heading:hover {
+  background-color: #FFFFFF;
+  color: #333;
+}
+
+.qv-object-TabbedContainer_v2 .stacked .d_active {
+  background-color: #fff;
+  color: #000;
+}
+
+.qv-object-TabbedContainer_v2 .stacked h3 {
+  font-family:  QlikView Sans, sans-serif;
+  font-size: 13px;
+  font-weight: normal;
+  color: #ccc;
+}
+
+.qv-object-TabbedContainer_v2 .mustDisplay {
+  display: block!important
+}

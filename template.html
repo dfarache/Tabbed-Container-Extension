@@ -1,0 +1,26 @@
+<div qv-extension ng-cloak>
+
+  <!-- Display error if there are no objects-->
+  <div ng-if="tabItems.length === 0">
+    A tab will show for each item that has a title and an object ID.
+  </div>
+
+  <ul class="tabs with-border" ng-if="(tabItems.length === 1 && !layout.shouldCollapseTabs) || tabItems.length > 1">
+    <li class="buttonTab with-border-no-bottom"
+        ng-repeat="tab in tabItems"
+        rel="{{localId}}_{{tab.id}}"
+        ng-class="{
+          'active': tab.id === tabItems[0].id,
+          'tab_last' : tab.id == tabItems[tabItems.length - 1].id }">
+      {{tab.title}}
+    </li>
+  </ul>
+  <div class="tab_container with-border"
+      ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
+      ng-if="tabItems.length > 0" init-objects>
+    <h3 on-tabs-done="tabs_done" ng-repeat-start="tab in tabItems" class="tab_drawer_heading d_active" rel="{{localId}}_{{tab.id}}">
+      {{tab.title}}
+    </h3>
+    <div ng-repeat-end id="{{localId}}_{{tab.id}}" class="tab_content qvobject" data-qvid="{{tab.objectid}}"></div>
+  </div>
+</div>

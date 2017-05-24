@@ -1,0 +1,7 @@
+{
+	"name": "Tabbed Container_v2",
+	"description": "A tabbed container with each tab containing a reference to another object in the app",
+	"type": "visualization",
+	"version": 1,
+	"author": ""
+}
