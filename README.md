@@ -15,6 +15,9 @@ Additionally, the style of the body and the tabs may be easily modified through 
 
 ![Tabbed-Container-Extension](assets/img/extension_options.JPG)
 
+In the event that the width assigned to the extension is lower than the space needed to render the tabs, the Tabbed Container will go into stacked mode. This is bound to happen as well in mobile devices.
+
+![Tabbed-Container-Extension](assets/img/extension_stacked.JPG)
 
 ## How to use
 1. Copy the extension folder into your Qlik/Sense/Extensions folder.
