@@ -8,6 +8,7 @@
     './constants/colors',
     './services/tabService',
     './directives/initObjects',
+    './directives/stackedContainer',
     './directives/onTabsDone'
 ],
 
@@ -37,35 +38,6 @@
             template: template,
             priority: 0,
             paint: function($element, layout) {
-                var that = this;
-                // what's the width?
-                var container_width = $element.find(".tab_container").width();
-                var tabs_width = 0;
-
-                $element.find(".tabs").children().each(function(index) {
-                    tabs_width += $(this).outerWidth();
-                });
-                tabs_width += 25;
-
-                $element.parent().data("containerwidth", $element.find(".tab_container").width());
-
-                setTimeout(function() {
-                    if( container_width < tabs_width && !$element.parent().hasClass("stacked")) {
-                        // ensure it's stacked:
-                        $element.parent().addClass("stacked");
-                            var outerHeight = 0;
-                            outerHeight = $element.find("h3.tab_drawer_heading:first").outerHeight() * $element.find("h3.tab_drawer_heading").length;
-                            outerHeight += 40;  // padding for the item
-
-                            $element.find("div.tab_content:visible").height($element.find(".tab_container").height() - outerHeight);
-                            // going into 'stacked mode':
-                            //$element.find(".tab_container").height($element.find(".tab_container").height() + $element.find(".tab_container").find("li:first").height());
-
-                    } else {
-                        $element.parent().removeClass("stacked");
-                        $element.find("div.tab_content:visible").css("height", "")
-                    }
-                },10)
 
                 // Paint the border and the background of the object container
                 var tileBackground = hexToRgb(colors.palette[layout.backgroundColor]);
@@ -88,7 +60,9 @@
                 function($scope, $timeout, tabService) {
                     $scope.layout.colors = colors;
                     $scope.activeTab = 0;
-
+                    $scope.tabsWidth = $(".tab_container").width();
+                    console.log($scope.tabsWidth);
+console.log($scope);
                     $scope.isTabActive = function(tab, tabItems, index) {
                         return tab.id === tabItems[index].id;
                     }

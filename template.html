@@ -1,4 +1,4 @@
-<div qv-extension ng-cloak>
+<div qv-extension ng-cloak stacked-container>
 
   <!-- Display error if there are no objects-->
   <div ng-if="tabItems.length === 0">
@@ -14,7 +14,7 @@
           'active': tab.id === tabItems[$index].id,
           'tab_last' : tab.id == tabItems[tabItems.length - 1].id }"
         ng-style="getTabStyles(tab, tabItems, activeTab)">
-      {{tab.title}}{{activeTab}}
+      {{tab.title}}
     </li>
   </ul>
   <div class="tab_container with-border"
