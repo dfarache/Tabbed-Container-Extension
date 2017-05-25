@@ -14,57 +14,6 @@ define(["jquery", "angular", "qvangular", "qlik"], function($, a, qva, qlik) {
                         hasInit = true;
 
                         $timeout(function() {
-                            /////////////////////////////////////////////////////
-
-                            var tabs = element.prev();
-                            var tab_container = element;
-
-                            var tabsWidth = 0;
-                            tabs.find("li").each(function(index) {
-                                tabsWidth += $(this).outerWidth();
-                            });
-
-                            // add on an amount of width so that items toggle appropriately:
-                            tabsWidth += 25;
-
-                            // let's add the tabs' width, for later use:
-                            tabs.parent().parent().data("tabswidth", tabsWidth);
-                            tabs.parent().parent().data("containerwidth", tab_container.width());
-
-                            if (tab_container.width() < tabsWidth) {
-
-                                tabs.parent().parent().addClass("stacked");
-
-                                // setTimeout(function() {
-
-                                var outerHeight = 0;
-                                outerHeight = tab_container.find("h3.tab_drawer_heading:first").outerHeight() * tab_container.find("h3.tab_drawer_heading").length;
-                                outerHeight += 40; // padding for the item
-
-
-                                // work out the container height:
-                                var containerHeight = tab_container.height() - outerHeight;
-                                tab_container.find("div.tab_content:eq(0)").height(containerHeight);
-
-                                //}, 250);
-
-
-                                // increase the height of the container and the content by an amount :)
-
-                                //tab_container.height(tab_container.height() + tabs.find("li:first").height());
-
-
-                            } else {
-
-                            }
-
-
-                            /////////////////////////////////////////////////////
-                        }, 1);
-
-
-
-                        $timeout(function() {
 
                             var tabs = element.prev();
                             var tab_container = element;
@@ -113,7 +62,7 @@ define(["jquery", "angular", "qvangular", "qlik"], function($, a, qva, qlik) {
                                     var outerHeight = 0;
                                     outerHeight = tab_container.children("h3.tab_drawer_heading:first").outerHeight() * tab_container.children("h3.tab_drawer_heading").length;
                                     outerHeight += 40; // padding for the item
-                                    
+
                                     tab_container.find("div.tab_content:visible").height(tab_container.height() - outerHeight);
 
                                     var qvid = $("#" + d_activeTab).data("qvid");
