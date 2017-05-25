@@ -1,4 +1,4 @@
-<div qv-extension ng-cloak>
+<div qv-extension ng-cloak stacked-container>
 
   <!-- Display error if there are no objects-->
   <div ng-if="tabItems.length === 0">
@@ -7,16 +7,19 @@
 
   <ul class="tabs with-border" ng-if="(tabItems.length === 1 && !layout.shouldCollapseTabs) || tabItems.length > 1">
     <li class="buttonTab with-border-no-bottom"
-        ng-repeat="tab in tabItems"
+        ng-repeat="tab in tabItems track by $index"
+        ng-click="$parent.activeTab = $index"
         rel="{{localId}}_{{tab.id}}"
         ng-class="{
-          'active': tab.id === tabItems[0].id,
-          'tab_last' : tab.id == tabItems[tabItems.length - 1].id }">
+          'active': tab.id === tabItems[$index].id,
+          'tab_last' : tab.id == tabItems[tabItems.length - 1].id }"
+        ng-style="getTabStyles(tab, tabItems, activeTab)">
       {{tab.title}}
     </li>
   </ul>
   <div class="tab_container with-border"
       ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
+      ng-style="getContainerStyles()"
       ng-if="tabItems.length > 0" init-objects>
     <h3 on-tabs-done="tabs_done" ng-repeat-start="tab in tabItems" class="tab_drawer_heading d_active" rel="{{localId}}_{{tab.id}}">
       {{tab.title}}
