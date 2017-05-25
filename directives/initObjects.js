@@ -71,21 +71,6 @@ define(["jquery", "angular", "qvangular", "qlik"], function($, a, qva, qlik) {
                                 }.bind(this), 10);
                             });
 
-
-                            /* Extra class "tab_last"
-                               to add border to right side
-                               of last tab */
-                            $('ul.tabs li').last().addClass("tab_last");
-
-                            // a.forEach(element.children(), function(e) {
-                            //                                 if (void 0 !== $(e).data("qvid")) {
-                            //                                     qlik.currApp().getObject(e, $(e).data("qvid"));
-                            //                                 }
-                            //                             });
-
-                            //   console.log(tab_container.find("div:first"));
-                            //console.log(tab_container.find("div:first").data("qvid"));
-
                             setTimeout(function() {
                                 var qvid = tab_container.find("div:first").data("qvid");
                                 qlik.currApp().getObject(tab_container.find("div:first"), qvid);
