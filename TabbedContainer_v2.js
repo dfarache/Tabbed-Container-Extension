@@ -60,9 +60,7 @@
                 function($scope, $timeout, tabService) {
                     $scope.layout.colors = colors;
                     $scope.activeTab = 0;
-                    $scope.tabsWidth = $(".tab_container").width();
-                    console.log($scope.tabsWidth);
-console.log($scope);
+                    
                     $scope.isTabActive = function(tab, tabItems, index) {
                         return tab.id === tabItems[index].id;
                     }
