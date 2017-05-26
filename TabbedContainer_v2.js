@@ -7,21 +7,14 @@
     './properties/definition',
     './constants/colors',
     './services/tabService',
+    './services/colorsService',
     './directives/initObjects',
     './directives/stackedContainer',
     './directives/onTabsDone'
 ],
 
     function($, a, qlik, cssStyles, template, definition, colors) {
-        var hexToRgb = function(hex) {
-            var result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : null;
-        }
-        var timeout;
+        var colorsService;
 
         $("<style>").html(cssStyles).appendTo("head");
 
@@ -38,16 +31,12 @@
             template: template,
             priority: 0,
             paint: function($element, layout) {
-
                 // Paint the border and the background of the object container
-                var tileBackground = hexToRgb(colors.palette[layout.backgroundColor]);
-                var backgroundColor = (layout.backgroundColorCode !== undefined && layout.backgroundColorCode.length > 0) ?
-                    layout.backgroundColorCode :
-                    'rgba(' + tileBackground.r + ','+ tileBackground.g + ',' + tileBackground.b + ', 0.2)';
+                var tileBorder = colorsService.hexToRgb(colors.palette[layout.borderColor]);
+                var tileBackground = colorsService.hexToRgb(colors.palette[layout.backgroundColor]);
 
-                $element.find('.tab_container').css('border-color', colors.palette[layout.borderColor]);
-                $element.find('.tab_content').css('background-color', backgroundColor);
-
+                $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));;
+                $element.find('.tab_content').css('background-color', colorsService.toString(tileBackground, 0.2));
 
                 return qlik.Promise.resolve();
             },
@@ -56,22 +45,23 @@
                 this.paint($element, layout);
 
             },
-            controller: ['$scope', '$timeout', 'tabService',
-                function($scope, $timeout, tabService) {
+            controller: ['$scope', '$timeout', 'tabService', 'colorsService',
+                function($scope, $timeout, tabService, cService) {
+                    colorsService = cService;
                     $scope.layout.colors = colors;
                     $scope.activeTab = 0;
-                    
+
                     $scope.isTabActive = function(tab, tabItems, index) {
                         return tab.id === tabItems[index].id;
                     }
 
                     $scope.getTabStyles = function(tab, tabItems, index) {
-                        var buttonBackground = hexToRgb(colors.palette[$scope.layout.buttonColor])
+                        var buttonBackground = colorsService.hexToRgb(colors.palette[$scope.layout.buttonColor])
 
                         return $scope.isTabActive(tab, tabItems, index) ?
                             {
-                                'background-color': 'rgba(' + buttonBackground.r + ','+ buttonBackground.g + ',' + buttonBackground.b + ', 0.2)',
-                                'border-color': colors.palette[$scope.layout.buttonColor]
+                                'background-color': colorsService.toString(buttonBackground, 0.2),
+                                'border-color': colorsService.toString(buttonBackground)
                             } :
                             {
                                 'background-color': colors.inactive.background,
