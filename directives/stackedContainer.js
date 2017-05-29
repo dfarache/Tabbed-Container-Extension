@@ -6,15 +6,10 @@ define(["jquery", "qvangular", "qlik"], function($, qva, qlik) {
             priority: 0,
             restrict: 'A',
             link: function($scope, $element) {
-                // execute when first rendered
-                $scope.$on('tabs_done', function(tabElement) {
-                    stackContainer($element);
-                });
-
-                // execute again if the width of the container changes
+                // execute if the width of the container changes
                 $scope.$watch(function(){
                     return $element.find(".tab_container").width();
-                }, function(newValue){
+                }, function(newValue){                    
                     stackContainer($element);
                 })
             }
