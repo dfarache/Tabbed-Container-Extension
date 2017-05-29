@@ -8,12 +8,12 @@
   <ul class="tabs with-border" ng-if="(tabItems.length === 1 && !layout.shouldCollapseTabs) || tabItems.length > 1">
     <li class="buttonTab with-border-no-bottom"
         ng-repeat="tab in tabItems track by $index"
-        ng-click="$parent.activeTab = $index"
+        ng-click="onTabClick($index)"
         rel="{{localId}}_{{tab.id}}"
         ng-class="{
           'active': tab.id === tabItems[$index].id,
           'tab_last' : tab.id == tabItems[tabItems.length - 1].id }"
-        ng-style="getTabStyles(tab, tabItems, activeTab)">
+        ng-style="getTabStyles(tab, activeTab)">
       {{tab.title}}
     </li>
   </ul>

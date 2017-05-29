@@ -49,16 +49,15 @@
                 function($scope, $timeout, tabService, cService) {
                     colorsService = cService;
                     $scope.layout.colors = colors;
-                    $scope.activeTab = 0;
 
-                    $scope.isTabActive = function(tab, tabItems, index) {
-                        return tab.id === tabItems[index].id;
+                    $scope.isTabActive = function(tab, activeTab) {
+                        return tab.id === activeTab.id;
                     }
 
-                    $scope.getTabStyles = function(tab, tabItems, index) {
+                    $scope.getTabStyles = function(tab, activeTab) {
                         var buttonBackground = colorsService.hexToRgb(colors.palette[$scope.layout.buttonColor])
 
-                        return $scope.isTabActive(tab, tabItems, index) ?
+                        return $scope.isTabActive(tab, activeTab) ?
                             {
                                 'background-color': colorsService.toString(buttonBackground, 0.2),
                                 'border-color': colorsService.toString(buttonBackground)
@@ -69,8 +68,13 @@
                             }
                     }
 
+                    $scope.onTabClick = function(index) {
+                        $scope.activeTab = $scope.tabItems[index];
+                    }
+
                     $scope.localId = $scope.$parent.options.id;
                     $scope.tabItems = tabService.getTabInfo($scope);
+                    $scope.activeTab = $scope.tabItems[0];
 
                     /* TODO: react dynamically to object additions/removals
                     $scope.$watchCollection('layout', function(newValue, oldValue){
