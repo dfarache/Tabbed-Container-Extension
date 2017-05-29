@@ -20,10 +20,21 @@
   <div class="tab_container with-border"
       ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
       ng-style="getContainerStyles()"
-      ng-if="tabItems.length > 0" init-objects>
-    <h3 on-tabs-done="tabs_done" ng-repeat-start="tab in tabItems" class="tab_drawer_heading d_active" rel="{{localId}}_{{tab.id}}">
+      ng-if="tabItems.length > 0">
+    <h3 ng-repeat-start="tab in tabItems"
+        class="tab_drawer_heading"
+        ng-class="{'d_active': activeTab.id === tab.id }"
+        ng-click="onTabClick($index)"
+        rel="{{localId}}_{{tab.id}}">
       {{tab.title}}
     </h3>
-    <div ng-repeat-end id="{{localId}}_{{tab.id}}" class="tab_content qvobject" data-qvid="{{tab.objectid}}"></div>
+    <div ng-repeat-end
+        id="{{localId}}_{{tab.id}}"
+        ng-show="activeTab.id === tab.id"
+        class="tab_content qvobject"
+        data-qvid="{{tab.objectid}}"
+        show-first-object localid="{{localId}}" tab="tab">
+        {{ activeTab.id === tab.id }}
+    </div>
   </div>
 </div>

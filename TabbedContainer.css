@@ -72,14 +72,12 @@
 .qv-object-TabbedContainer_v2 .tab_content {
   padding: 20px;
   height: calc(100% - 40px);
-  display: none;
 }
 
 @media (max-height:700px) {
   .qv-object-TabbedContainer_v2 .tab_content {
     padding: 2px;
     height: calc(100% - 4px);
-    display: none;
   }
 }
 

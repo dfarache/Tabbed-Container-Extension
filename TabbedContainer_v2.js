@@ -8,9 +8,8 @@
     './constants/colors',
     './services/tabService',
     './services/colorsService',
-    './directives/initObjects',
     './directives/stackedContainer',
-    './directives/onTabsDone'
+    './directives/showFirstObject'
 ],
 
     function($, a, qlik, cssStyles, template, definition, colors) {
@@ -49,6 +48,7 @@
                 function($scope, $timeout, tabService, cService) {
                     colorsService = cService;
                     $scope.layout.colors = colors;
+                    $scope.currentObject;
 
                     $scope.isTabActive = function(tab, activeTab) {
                         return tab.id === activeTab.id;
@@ -70,6 +70,11 @@
 
                     $scope.onTabClick = function(index) {
                         $scope.activeTab = $scope.tabItems[index];
+
+                        qlik.currApp().getObject(
+                            $('#' + $scope.localId + '_' + $scope.activeTab.id),
+                            $scope.activeTab.objectid
+                        )
                     }
 
                     $scope.localId = $scope.$parent.options.id;
