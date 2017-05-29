@@ -22,7 +22,7 @@ In the event that the width assigned to the extension is lower than the space ne
 ## How to use
 1. Copy the extension folder into your Qlik/Sense/Extensions folder.
 2. Set the values for the `(title,objectId)` you wish to display.
-3. Reload the sheet.
+3. The changes should appear automatically the extension.
 
 ## Contributing
 

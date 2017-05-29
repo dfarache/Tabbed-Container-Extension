@@ -6,7 +6,7 @@ define(["angular", "qvangular", "qlik"], function(a, b, c) {
             return {
 
                 getTabInfo: function($scope) {
-                  
+
                     var tabItems = [];
 
                     for(var tabLoop = 0; tabLoop < 5; tabLoop++) {
@@ -18,7 +18,8 @@ define(["angular", "qvangular", "qlik"], function(a, b, c) {
                             tabItems.push({
                                 id: id + tabLoop.toString(),
                                 objectid: id,
-                                title: title
+                                title: title,
+                                index: tabLoop
                             });
                         }
                     }

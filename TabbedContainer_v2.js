@@ -81,11 +81,25 @@
                     $scope.tabItems = tabService.getTabInfo($scope);
                     $scope.activeTab = $scope.tabItems[0];
 
-                    /* TODO: react dynamically to object additions/removals
-                    $scope.$watchCollection('layout', function(newValue, oldValue){
-                        $scope.localId = $scope.$parent.options.id;
+                    /** Reinitialize the tabItems object if the layout changes,
+                     * which happens when the user gives some input.
+                     *
+                     * Then, check for the following scenarios:
+                     *     1. The active tab was removed -> take user to tab 0
+                     *     2. Otherwise, reload the current object */
+                    $scope.$watchCollection('layout', function(newValue){
                         $scope.tabItems = tabService.getTabInfo($scope);
-                    });*/
+
+                        // if active tab is undefined, then it was removed
+                        var activeTab = $scope.tabItems.find(function(tab){
+                            return tab.index === $scope.activeTab.index;
+                        });
+
+                        $timeout(function(){
+                            (activeTab === undefined) ? $scope.onTabClick(0)
+                                : $scope.onTabClick($scope.activeTab.index);
+                        },200)
+                    });
                 }
             ]
         };
