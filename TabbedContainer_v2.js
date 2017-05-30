@@ -81,25 +81,32 @@
                     $scope.tabItems = tabService.getTabInfo($scope);
                     $scope.activeTab = $scope.tabItems[0];
 
+
                     /** Reinitialize the tabItems object if the layout changes,
                      * which happens when the user gives some input.
                      *
                      * Then, check for the following scenarios:
-                     *     1. The active tab was removed -> take user to tab 0
-                     *     2. Otherwise, reload the current object */
-                    $scope.$watchCollection('layout', function(newValue){
+                     *     1. The first tab is added -> render it inmediately
+                     *     2. The active tab was removed -> take user to tab 0
+                     *     3. Otherwise, reload the current object */
+                    $scope.$watch('layout', function(newValue){
+                        var prevNumberTabs = $scope.tabItems.length;
                         $scope.tabItems = tabService.getTabInfo($scope);
 
-                        // if active tab is undefined, then it was removed
-                        var activeTab = $scope.tabItems.find(function(tab){
-                            return tab.index === $scope.activeTab.index;
-                        });
+                        if(prevNumberTabs === 0 && $scope.tabItems.length > 0){
+                            $scope.onTabClick(0);
+                        } else if($scope.tabItems.length > 0){
+                            // if active tab is -1, then it was removed
+                            var activeTabIndex = $scope.tabItems.findIndex(function(tab){
+                                  return tab.index === $scope.activeTab.index;
+                            });
 
-                        $timeout(function(){
-                            (activeTab === undefined) ? $scope.onTabClick(0)
-                                : $scope.onTabClick($scope.activeTab.index);
-                        },200)
-                    });
+                            $timeout(function(){
+                                (activeTabIndex === -1) ? $scope.onTabClick(0)
+                                    : $scope.onTabClick(activeTabIndex);
+                            },200)
+                        }
+                    }, true);
                 }
             ]
         };
