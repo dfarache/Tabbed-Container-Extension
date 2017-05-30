@@ -48,6 +48,7 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         component: "dropdown",
                         type: "string",
                         ref: "tab1MasterItem",
+                        defaultValue: "",
                         options: function () {
 			                       return getMasterObjectList();
 		                    }
@@ -76,6 +77,7 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         component: "dropdown",
                         type: "string",
                         ref: "tab2MasterItem",
+                        defaultValue: "",
                         options: function () {
 			                       return getMasterObjectList();
 		                    }
@@ -104,6 +106,7 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         component: "dropdown",
                         type: "string",
                         ref: "tab3MasterItem",
+                        defaultValue: "",
                         options: function () {
                              return getMasterObjectList();
                         }
@@ -132,6 +135,7 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         component: "dropdown",
                         type: "string",
                         ref: "tab4MasterItem",
+                        defaultValue: "",
                         options: function () {
                              return getMasterObjectList();
                         }
@@ -160,6 +164,7 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         component: "dropdown",
                         type: "string",
                         ref: "tab5MasterItem",
+                        defaultValue: "",
                         options: function () {
                              return getMasterObjectList();
                         }
