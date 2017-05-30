@@ -8,7 +8,7 @@
   <ul class="tabs with-border" ng-if="(tabItems.length === 1 && !layout.shouldCollapseTabs) || tabItems.length > 1">
     <li class="buttonTab with-border-no-bottom"
         ng-repeat="tab in tabItems track by $index"
-        ng-click="onTabClick($index)"      
+        ng-click="onTabClick($index)"
         ng-class="{
           'active': tab.id === tabItems[$index].id,
           'tab_last' : tab.id == tabItems[tabItems.length - 1].id }"
@@ -30,7 +30,6 @@
         id="{{localId}}_{{tab.id}}"
         ng-show="activeTab.id === tab.id"
         class="tab_content qvobject">
-        {{ activeTab.id === tab.id }}
     </div>
   </div>
 </div>
