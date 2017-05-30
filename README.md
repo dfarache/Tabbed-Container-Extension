@@ -11,7 +11,7 @@ In order to add one of your visualizations to a given tab, go into edit mode and
 
 In the event that both parameters are given, the extension will take the input from the objectId field.
 
-![Tabbed-Container-Extension](assets/img/extension_options.JPG)
+![Tabbed-Container-Extension](assets/img/extension_optionsMaster.JPG)
 
 Additionally, the style of the body and the tabs may be easily modified through the options given in the "Appearance" section through the following options:
 
