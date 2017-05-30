@@ -1,26 +1,28 @@
-define(["angular", "qvangular", "qlik"], function(a, b, c) {
+define(["qvangular"], function(qva) {
     "use strict";
-    b.service("tabService", ["$q",
+
+    qva.service("tabService", ["$q",
         function(q) {
 
             return {
 
                 getTabInfo: function($scope) {
-
                     var tabItems = [];
+                    var maxTabItems = 5;
+                    var objectid, tab;
 
-                    for(var tabLoop = 0; tabLoop < 5; tabLoop++) {
-                        var title = $scope.layout["tab" + (tabLoop + 1).toString() + "Title"];
-                        var id = $scope.layout["tab" + (tabLoop + 1).toString() + "ObjectId"];
+                    for(var i=1; i<=maxTabItems; i++) {
+                        tab = $scope.layout.props['tab' + i];
 
-                        if(title.length > 0 && id.length > 0) {
-                            // both pieces of information are present, so add it to the return array:
+                        if(tab.title.length > 0 && (tab.masterItem.length > 0 || tab.objectid.length > 0)) {
+                            objectid = (tab.objectid.length > 0) ? tab.objectid : tab.masterItem;
+
                             tabItems.push({
-                                id: id + tabLoop.toString(),
-                                objectid: id,
-                                title: title,
-                                index: tabLoop
-                            });
+                                id: i + objectid,
+                                objectid: objectid,
+                                title: tab.title,
+                                index: i
+                            })
                         }
                     }
 
