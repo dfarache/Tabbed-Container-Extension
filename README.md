@@ -3,17 +3,23 @@ The Tabbed Container is a Qlik Extension that groups Sense objects in a containe
 
 ![Tabbed-Container-Extension](assets/img/extension_overview.JPG)
 
-It takes a maximum of 5 pairs (title, objectId) as the input that is used to display the visualization. The tab displays the text within the "title" input and the body of the container displays the object with the corresponding ID.
+The extension can display a maximum of 5 tabs, having each tab its own title -which is displayed in the navigation button- and its own visualization.
+In order to add one of your visualizations to a given tab, go into edit mode and select the tab to which you want to add the visualization. Then, you can select a preexisting  visualization using either one of the following methods:
 
-Additionally, the style of the body and the tabs may be easily modified through the options given in the "Appearance" section through the following options:+
+1. Select a visualization from your master items library using the dropdown.
+2. Enter the objectId of any visualization within the app.
+
+In the event that both parameters are given, the extension will take the input from the objectId field.
+
+![Tabbed-Container-Extension](assets/img/extension_options.JPG)
+
+Additionally, the style of the body and the tabs may be easily modified through the options given in the "Appearance" section through the following options:
 
 1. Border color-picker: it sets the color of the border of the body container through a standard Qlik Sense color picker.
 2. Background color-picker: it sets the color of the background of the body container through either a standard Qlik Sense color picker or an input box that takes any valid way of expressing color (RGB, HEX, etc.).
 3. Button color-picker: it sets the color of the border and of the background of the tab that is active.
 4. Additional settings:
     1. Collapse when there is 1 tab: when set to true, the tabs are hidden if there is only one object.
-
-![Tabbed-Container-Extension](assets/img/extension_options.JPG)
 
 In the event that the width assigned to the extension is lower than the space needed to render the tabs, the Tabbed Container will go into stacked mode. This is bound to happen as well in mobile devices.
 
