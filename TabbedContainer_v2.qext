@@ -1,7 +1,8 @@
 {
 	"name": "Tabbed Container_v2",
-	"description": "A tabbed container with each tab containing a reference to another object in the app",
+	"description": "An easy way to navigate through your visualizations",
 	"type": "visualization",
 	"version": 1,
-	"author": ""
+	"author": "bcf",
+	"icon": "table"
 }
