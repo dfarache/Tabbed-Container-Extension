@@ -1,6 +1,24 @@
-define([], function() {
+define(["qlik", 'ng!$q'], function(qlik, $q) {
 
-    "use strict";
+    var app = qlik.currApp(this);
+
+  	function getMasterObjectList () {
+  	     var defer = $q.defer();
+
+         app.getAppObjectList( 'masterobject', function ( data ) {
+    		     var masterobject = [];
+    			   var sortedData = _.sortBy( data.qAppObjectList.qItems, function ( item ) {
+    				     return item.qData.rank;
+    			});
+
+    			_.each( sortedData, function ( item ) {
+    		      masterobject.push({ value: item.qInfo.qId, label: item.qMeta.title });
+    			});
+
+    			return defer.resolve( masterobject );
+    		});
+    		return defer.promise;
+  	};
 
     return {
         type: "items",
@@ -15,15 +33,24 @@ define([], function() {
                     tab1Title: {
                         type: "string",
                         label: "Title",
-                        ref: "tab1Title",
+                        ref: "props.tab1.title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab1ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "tab1ObjectId",
+                        ref: "props.tab1.objectid",
                         defaultValue: ""
+                    },
+                    tab1MasterItem: {
+                        label: "Master Item",
+                        component: "dropdown",
+                        type: "string",
+                        ref: "props.tab1.masterItem",
+                        options: function () {
+			                       return getMasterObjectList();
+		                    }
                     }
                 }
             },
@@ -31,18 +58,27 @@ define([], function() {
                 type: "items",
                 label: "Tab 2",
                 items: {
-                    tab1Title: {
+                    tab2Title: {
                         type: "string",
                         label: "Title",
-                        ref: "tab2Title",
+                        ref: "props.tab2.title",
                         defaultValue: "",
                         expression: "optional"
                     },
-                    tab1ObjectId: {
+                    tab2ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "tab2ObjectId",
+                        ref: "props.tab2.objectid",
                         defaultValue: ""
+                    },
+                    tab2MasterItem: {
+                        label: "Master Item",
+                        component: "dropdown",
+                        type: "string",
+                        ref: "props.tab2.masterItem",
+                        options: function () {
+			                       return getMasterObjectList();
+		                    }
                     }
                 }
             },
@@ -50,18 +86,27 @@ define([], function() {
                 type: "items",
                 label: "Tab 3",
                 items: {
-                    tab1Title: {
+                    tab3Title: {
                         type: "string",
                         label: "Title",
-                        ref: "tab3Title",
+                        ref: "props.tab3.title",
                         defaultValue: "",
                         expression: "optional"
                     },
-                    tab1ObjectId: {
+                    tab3ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "tab3ObjectId",
+                        ref: "props.tab3.objectid",
                         defaultValue: ""
+                    },
+                    tab3MasterItem: {
+                        label: "Master Item",
+                        component: "dropdown",
+                        type: "string",
+                        ref: "props.tab3.masterItem",
+                        options: function () {
+                             return getMasterObjectList();
+                        }
                     }
                 }
             },
@@ -72,15 +117,24 @@ define([], function() {
                     tab4Title: {
                         type: "string",
                         label: "Title",
-                        ref: "tab4Title",
+                        ref: "props.tab4.title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab4ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "tab4ObjectId",
+                        ref: "props.tab4.objectid",
                         defaultValue: ""
+                    },
+                    tab4MasterItem: {
+                        label: "Master Item",
+                        component: "dropdown",
+                        type: "string",
+                        ref: "props.tab4.masterItem",
+                        options: function () {
+                             return getMasterObjectList();
+                        }
                     }
                 }
             },
@@ -88,18 +142,27 @@ define([], function() {
                 type: "items",
                 label: "Tab 5",
                 items: {
-                    tab1Title: {
+                    tab5Title: {
                         type: "string",
                         label: "Title",
-                        ref: "tab5Title",
+                        ref: "props.tab5.title",
                         defaultValue: "",
                         expression: "optional"
                     },
-                    tab1ObjectId: {
+                    tab5ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "tab5ObjectId",
+                        ref: "props.tab5.objectid",
                         defaultValue: ""
+                    },
+                    tab5MasterItem: {
+                        label: "Master Item",
+                        component: "dropdown",
+                        type: "string",
+                        ref: "props.tab5.masterItem",
+                        options: function () {
+                             return getMasterObjectList();
+                        }
                     }
                 }
             },
