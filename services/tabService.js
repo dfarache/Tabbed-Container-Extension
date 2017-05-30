@@ -8,18 +8,20 @@ define(["qvangular"], function(qva) {
             getTabInfo: function($scope) {
                 var tabItems = [];
                 var maxTabItems = 5;
-                var objectid, tab;
+                var objectid;
 
                 for(var i=1; i<=maxTabItems; i++) {
-                    tab = $scope.layout.props['tab' + i];
+                    var title = $scope.layout["tab" + i + "Title"];
+                    var textId = $scope.layout["tab" + i + "ObjectId"];
+                    var masterItem = $scope.layout["tab" + i + "MasterItem"];
 
-                    if(tab.title.length > 0 && (tab.masterItem.length > 0 || tab.objectid.length > 0)) {
-                        objectid = (tab.objectid.length > 0) ? tab.objectid : tab.masterItem;
+                    if(title.length > 0 && (masterItem.length > 0 || objectid.length > 0)) {
+                        objectid = (textId.length > 0) ? textId : masterItem;
 
                         tabItems.push({
                             id: i + objectid,
                             objectid: objectid,
-                            title: tab.title,
+                            title: title,
                             index: i
                         })
                     }

@@ -33,21 +33,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                     tab1Title: {
                         type: "string",
                         label: "Title",
-                        ref: "props.tab1.title",
+                        ref: "tab1Title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab1ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "props.tab1.objectid",
+                        ref: "tab1ObjectId",
                         defaultValue: ""
                     },
                     tab1MasterItem: {
                         label: "Master Item",
                         component: "dropdown",
                         type: "string",
-                        ref: "props.tab1.masterItem",
+                        ref: "tab1MasterItem",
                         options: function () {
 			                       return getMasterObjectList();
 		                    }
@@ -61,21 +61,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                     tab2Title: {
                         type: "string",
                         label: "Title",
-                        ref: "props.tab2.title",
+                        ref: "tab2Title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab2ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "props.tab2.objectid",
+                        ref: "tab2ObjectId",
                         defaultValue: ""
                     },
                     tab2MasterItem: {
                         label: "Master Item",
                         component: "dropdown",
                         type: "string",
-                        ref: "props.tab2.masterItem",
+                        ref: "tab2MasterItem",
                         options: function () {
 			                       return getMasterObjectList();
 		                    }
@@ -89,21 +89,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                     tab3Title: {
                         type: "string",
                         label: "Title",
-                        ref: "props.tab3.title",
+                        ref: "tab3Title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab3ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "props.tab3.objectid",
+                        ref: "tab3ObjectId",
                         defaultValue: ""
                     },
                     tab3MasterItem: {
                         label: "Master Item",
                         component: "dropdown",
                         type: "string",
-                        ref: "props.tab3.masterItem",
+                        ref: "tab3MasterItem",
                         options: function () {
                              return getMasterObjectList();
                         }
@@ -117,21 +117,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                     tab4Title: {
                         type: "string",
                         label: "Title",
-                        ref: "props.tab4.title",
+                        ref: "tab4Title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab4ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "props.tab4.objectid",
+                        ref: "tab4ObjectId",
                         defaultValue: ""
                     },
                     tab4MasterItem: {
                         label: "Master Item",
                         component: "dropdown",
                         type: "string",
-                        ref: "props.tab4.masterItem",
+                        ref: "tab4MasterItem",
                         options: function () {
                              return getMasterObjectList();
                         }
@@ -145,21 +145,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                     tab5Title: {
                         type: "string",
                         label: "Title",
-                        ref: "props.tab5.title",
+                        ref: "tab5Title",
                         defaultValue: "",
                         expression: "optional"
                     },
                     tab5ObjectId: {
                         type: "string",
                         label: "Object ID",
-                        ref: "props.tab5.objectid",
+                        ref: "tab5ObjectId",
                         defaultValue: ""
                     },
                     tab5MasterItem: {
                         label: "Master Item",
                         component: "dropdown",
                         type: "string",
-                        ref: "props.tab5.masterItem",
+                        ref: "tab5MasterItem",
                         options: function () {
                              return getMasterObjectList();
                         }
