@@ -7,12 +7,12 @@ define(["qvangular"], function(qva) {
             return {
 
                 getTabInfo: function($scope) {
-                    var i = 0;
                     var tabItems = [];
+                    var maxTabItems = 5;
                     var objectid, tab;
 
-                    for(var key in $scope.layout.props) {
-                        tab = $scope.layout.props[key];
+                    for(var i=1; i<=maxTabItems; i++) {
+                        tab = $scope.layout.props['tab' + i];
 
                         if(tab.title.length > 0 && (tab.masterItem.length > 0 || tab.objectid.length > 0)) {
                             objectid = (tab.objectid.length > 0) ? tab.objectid : tab.masterItem;
@@ -24,7 +24,6 @@ define(["qvangular"], function(qva) {
                                 index: i
                             })
                         }
-                        i++;
                     }
 
                     return tabItems;
