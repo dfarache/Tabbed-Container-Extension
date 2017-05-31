@@ -34,7 +34,7 @@
                 if(layout.backgroundColorCode.length > 0) {
                     var tileBackground = layout.backgroundColorCode;
                 } else {
-                    var tileBackgroundRgb = colors.palette[layout.backgroundColor]);
+                    var tileBackgroundRgb = colors.palette([layout.backgroundColor]);
                     var tileBackground = colorsService.toString(tileBackgroundRgb, 0.2);
                 }
 
