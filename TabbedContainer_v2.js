@@ -8,6 +8,7 @@
     './constants/colors',
     './services/tabService',
     './services/colorsService',
+    './services/qlikService',
     './directives/stackedContainer',
     './directives/exportTable'
 ],
