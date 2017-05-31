@@ -17,7 +17,7 @@
     </li>
   </ul>
   <div class="tab_container with-border"
-      ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"    
+      ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
       ng-if="tabItems.length > 0">
     <h3 ng-repeat-start="tab in tabItems"
         class="tab_drawer_heading"
@@ -25,11 +25,11 @@
         ng-click="onTabClick($index)">
       {{tab.title}}
     </h3>
+    <export-table-button ng-if="activeTab.id === tab.id" tab="tab"></export-table-button>
     <div ng-repeat-end
         id="{{localId}}_{{tab.id}}"
         ng-show="activeTab.id === tab.id"
-        class="tab_content qvobject"
-        export-table tab="tab">
+        class="tab_content qvobject">
     </div>
   </div>
 </div>
