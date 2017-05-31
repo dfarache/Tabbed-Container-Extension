@@ -96,9 +96,13 @@
                             $scope.onTabClick(0);
                         } else if($scope.tabItems.length > 0){
                             // if active tab is -1, then it was removed
-                            var activeTabIndex = $scope.tabItems.findIndex(function(tab){
-                                  return tab.index === $scope.activeTab.index;
-                            });
+                            var activeTabIndex = -1;
+                            for(var i=0; i<$scope.tabItems.length; i++){
+                                if($scope.tabItems[i].index === $scope.activeTab.index) {
+                                    activeTabIndex = i;
+                                    break;
+                                }
+                            }
 
                             $timeout(function(){
                                 (activeTabIndex === -1) ? $scope.onTabClick(0)
