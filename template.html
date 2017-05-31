@@ -17,8 +17,7 @@
     </li>
   </ul>
   <div class="tab_container with-border"
-      ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
-      ng-style="getContainerStyles()"
+      ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"    
       ng-if="tabItems.length > 0">
     <h3 ng-repeat-start="tab in tabItems"
         class="tab_drawer_heading"
