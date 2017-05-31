@@ -28,7 +28,8 @@
     <div ng-repeat-end
         id="{{localId}}_{{tab.id}}"
         ng-show="activeTab.id === tab.id"
-        class="tab_content qvobject">
+        class="tab_content qvobject"
+        export-table tab="tab">
     </div>
   </div>
 </div>
