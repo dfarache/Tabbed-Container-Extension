@@ -8,7 +8,8 @@
     './constants/colors',
     './services/tabService',
     './services/colorsService',
-    './directives/stackedContainer'
+    './directives/stackedContainer',
+    './directives/exportTable'
 ],
 
     function($, a, qlik, cssStyles, template, definition, colors) {
