@@ -26,22 +26,18 @@ define(["jquery", "qvangular", "qlik"], function($, qva, qlik) {
         var container_width = $element.find(".tab_container").width();
         var tabs_width = 25;
 
+        $element.parent().removeClass("stacked");
         $element.find(".tabs").children().each(function(index) {
             tabs_width += $(this).outerWidth();
         });
 
-        $element.parent().data("containerwidth", $element.find(".tab_container").width());
-
-        if( container_width < tabs_width && !$element.parent().hasClass("stacked")) {
+        if(container_width < tabs_width && !$element.parent().hasClass("stacked")) {
             $element.parent().addClass("stacked");
-                var outerHeight = 0;
-                outerHeight = $element.find("h3.tab_drawer_heading:first").outerHeight() * $element.find("h3.tab_drawer_heading").length;
-                outerHeight += 40;  // padding for the item
+            var outerHeight = 0;
+            outerHeight = $element.find("h3.tab_drawer_heading:first").outerHeight() * $element.find("h3.tab_drawer_heading").length;
+            outerHeight += 40;  // padding for the item
 
-                $element.find("div.tab_content:visible").height($element.find(".tab_container").height() - outerHeight);
-        } else {
-            $element.parent().removeClass("stacked");
-            $element.find("div.tab_content:visible").css("height", "")
+            $element.find("div.tab_content:visible").height($element.find(".tab_container").height() - outerHeight);
         }
     }
 });
