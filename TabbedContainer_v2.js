@@ -29,12 +29,19 @@
             template: template,
             priority: 0,
             paint: function($element, layout) {
+                /* the background of the container can be determined
+                 * by the color picker or the text input. The latter has priority. */
+                if(layout.backgroundColorCode.length > 0) {
+                    var tileBackground = layout.backgroundColorCode;
+                } else {
+                    var tileBackgroundRgb = colors.palette[layout.backgroundColor]);
+                    var tileBackground = colorsService.toString(tileBackgroundRgb, 0.2);
+                }
+
                 // Paint the border and the background of the object container
                 var tileBorder = colorsService.hexToRgb(colors.palette[layout.borderColor]);
-                var tileBackground = colorsService.hexToRgb(colors.palette[layout.backgroundColor]);
-
-                $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));;
-                $element.find('.tab_content').css('background-color', colorsService.toString(tileBackground, 0.2));
+                $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));
+                $element.find('.tab_content').css('background-color', tileBackground);
 
                 return qlik.Promise.resolve();
             },
