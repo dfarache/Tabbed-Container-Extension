@@ -85,7 +85,7 @@
                         )
                     }
 
-                    $scope.localId = $scope.$parent.options.id;
+                    $scope.localId = Math.floor(Math.random()*16777215).toString(16);
                     $scope.tabItems = tabService.getTabInfo($scope);
                     $scope.activeTab = $scope.tabItems[0];
 
