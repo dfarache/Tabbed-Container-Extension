@@ -239,7 +239,7 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                                     value: false,
                                     label: "No"
                                 }],
-                                defaultValue: false
+                                defaultValue: true
                             }
                         }
                     }

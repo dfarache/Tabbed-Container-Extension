@@ -14,7 +14,7 @@ define(['qvangular', 'qlik'], function(qva, qlik) {
             link: function(scope){
                 scope.table, scope.data;
                 scope.canExportData = false;
-                scope.hideButton = scope.hideButton || true;
+                scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
                 app.getObject(scope.tab.objectid).then(function(model){
                     return qlikService.getAllDataRows(model);
