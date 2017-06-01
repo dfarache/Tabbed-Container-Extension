@@ -14,6 +14,8 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
             var qTotalData = [];
             var deferred = Promise.defer();
 
+            if(model.layout.qHyperCube == null) { return deferred.resolve(qTotalData); }
+
             model.getHyperCubeData('/qHyperCubeDef', initialDataFetch).then(function(data){
                 var columns = model.layout.qHyperCube.qSize.qcx;
                 var totalHeight = model.layout.qHyperCube.qSize.qcy;
