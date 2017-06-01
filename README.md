@@ -13,6 +13,10 @@ In the event that both parameters are given, the extension will take the input f
 
 ![Tabbed-Container-Extension](assets/img/extension_optionsMaster.JPG)
 
+The data displayed in the current visualization can be exported to CSV by clicking on the export button, which can be found in the upper right corner of the object container.
+
+![Tabbed-Container-Extension](assets/img/exportButton.JPG)
+
 Additionally, the style of the body and the tabs may be easily modified through the options given in the "Appearance" section through the following options:
 
 1. Border color-picker: it sets the color of the border of the body container through a standard Qlik Sense color picker.
@@ -20,6 +24,7 @@ Additionally, the style of the body and the tabs may be easily modified through 
 3. Button color-picker: it sets the color of the border and of the background of the tab that is active.
 4. Additional settings:
     1. Collapse when there is 1 tab: when set to true, the tabs are hidden if there is only one object.
+    2. Hide the export button
 
 In the event that the width assigned to the extension is lower than the space needed to render the tabs, the Tabbed Container will go into stacked mode. This is bound to happen as well in mobile devices.
 
