@@ -3,7 +3,7 @@ The Tabbed Container is a Qlik Extension that groups Sense objects in a containe
 
 ![Tabbed-Container-Extension](assets/img/extension_overview.JPG)
 
-###Adding tabs
+### Adding tabs
 The extension can display a maximum of 5 tabs, having each tab its own title -which is displayed in the navigation button- and its own visualization.
 In order to add one of your visualizations to a given tab, go into edit mode and select the tab to which you want to add the visualization. Then, you can select a preexisting  visualization using either one of the following methods:
 
@@ -14,12 +14,12 @@ In the event that both parameters are given, the extension will take the input f
 
 ![Tabbed-Container-Extension](assets/img/extension_optionsMaster.JPG)
 
-###Export the data
+### Export the data
 The data displayed in the current visualization can be exported to CSV by clicking on the export button, which can be found in the upper right corner of the object container.
 
 ![Tabbed-Container-Extension](assets/img/exportButton.JPG)
 
-###Styling options
+### Styling options
 The style of the body and the tabs may be easily modified through the options given in the "Appearance" section through the following options:
 
 1. Border color-picker: it sets the color of the border of the body container through a standard Qlik Sense color picker.
