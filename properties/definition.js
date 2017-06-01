@@ -225,6 +225,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                                     label: "No"
                                 }],
                                 defaultValue: false
+                            },
+                            showExportButtonSwitch: {
+                                label: "Hide the export button",
+                                component: "switch",
+                                ref: "shouldHideExportButton",
+                                type: "boolean",
+                                options: [{
+                                    value: true,
+                                    label: "Yes"
+                                },
+                                {
+                                    value: false,
+                                    label: "No"
+                                }],
+                                defaultValue: false
                             }
                         }
                     }

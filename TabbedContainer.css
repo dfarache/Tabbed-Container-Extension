@@ -135,3 +135,16 @@
 .qv-object-TabbedContainer_v2 .mustDisplay {
   display: block!important
 }
+
+.qv-object-TabbedContainer_v2 .tab_container .exportButtonContainer{
+  position: absolute;
+  right: 20px;
+}
+
+.qv-object-TabbedContainer_v2 .tab_container .exportButtonContainer > button {
+  border: 0;
+  cursor: pointer;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center;
+}
