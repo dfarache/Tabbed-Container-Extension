@@ -25,7 +25,10 @@
         ng-click="onTabClick($index)">
       {{tab.title}}
     </h3>
-    <export-table-button ng-if="activeTab.id === tab.id" tab="tab"></export-table-button>
+    <export-table-button ng-if="activeTab.id === tab.id"
+        tab="tab"
+        hide-button="layout.shouldHideExportButton">
+    </export-table-button>
     <div ng-repeat-end
         id="{{localId}}_{{tab.id}}"
         ng-show="activeTab.id === tab.id"

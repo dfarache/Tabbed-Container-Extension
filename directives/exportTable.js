@@ -5,20 +5,22 @@ define(['qvangular', 'qlik'], function(qva, qlik) {
     qva.directive('exportTableButton', ['qlikService', function(qlikService){
         return {
             restrict: 'E',
-            template: '<div class="exportButtonContainer" ng-show="displayExportButton">' +
+            template: '<div class="exportButtonContainer" ng-show="canExportData && !hideButton">' +
                 '<button ng-click="exportData()"><span class="lui-icon lui-icon--download"></span></button></div>',
             scope: {
-                tab: '='
+                tab: '=',
+                hideButton: '='
             },
             link: function(scope){
                 scope.table, scope.data;
-                scope.displayExportButton = false;
+                scope.canExportData = false;
+                scope.hideButton = scope.hideButton || false;
 
                 app.getObject(scope.tab.objectid).then(function(model){
                     return qlikService.getAllDataRows(model);
                 }).then(function(data){
                     if(data instanceof Array && data.length > 0){
-                        scope.displayExportButton = true;
+                        scope.canExportData = true;
                         scope.data = data;
                     }
                 });
