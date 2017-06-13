@@ -148,3 +148,28 @@
   background-repeat: no-repeat;
   background-position: center;
 }
+
+/* Fixing the native bubbles in the upper left corner */
+.qv-object-TabbedContainer_v2 .qv-object-nav {
+  top: 43px;
+}
+
+.zoom .qv-object-TabbedContainer_v2 .qv-object-nav.zero-top {
+  top: 10px;
+}
+
+.qv-object-TabbedContainer_v2 .qv-object-nav > a {
+  line-height: 15px;
+  width: 15px;
+  height: 15px;
+}
+
+.qv-client.qv-card #qv-stage-container .qv-object-TabbedContainer_v2 .qv-object-nav {
+  top: 10px;
+}
+
+.qv-client.qv-card #qv-stage-container .qv-object-TabbedContainer_v2 .qv-object-nav > a{
+  line-height: 24px;
+  width: 24px;
+  height: 24px;
+}
