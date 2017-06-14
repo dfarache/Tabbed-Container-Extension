@@ -1,0 +1,47 @@
+<div ng-show="displayCard" ng-click="closeCard($event)" class="card-container">
+  <div class="main-step-container card-custom-default">
+    <div class="setup-animation q-outer-card-box">
+      <div class="q-include-card">
+
+        <div class="q-card-header-container ng-scope">
+          <div class="q-card-header">
+            <span>Details</span>
+          </div>
+          <div>
+            <button ng-click="closeCard($event)" class="lui-fade-button close-button" title="close">
+              <span class="lui-button__icon lui-icon lui-icon--close"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="content">
+          <div class="q-card-content">
+            <section ng-if="details.Dimensions.length">
+              <div class="item-header">
+                <span>Dimensions</span>
+                <span class="item-count">({{details.Dimensions.length}})</span>
+              </div>
+              <div class="item" ng-repeat="dimension in details.Dimensions">
+                <div class="item-title">
+                  {{ dimension }}
+                </div>
+              </div>
+            </section>
+            <section ng-if="details.Dimensions.length">
+              <div class="item-header">
+                <span>Measures</span>
+                <span class="item-count">({{details.Measures.length}})</span>
+              </div>
+              <div class="item" ng-repeat="measure in details.Measures">
+                <div class="item-title">
+                  {{ measure }}
+                </div>
+              </div>
+            </section>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

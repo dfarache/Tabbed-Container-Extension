@@ -19,7 +19,8 @@ require.config({
     './services/colorsService',
     './services/qlikService',
     './directives/stackedContainer',
-    './directives/exportTable'
+    './directives/exportTable',
+    './directives/detailsCard'
 ],
 
     function($, a, qlik, cssStyles, template, definition, colors) {
@@ -66,9 +67,14 @@ require.config({
                     colorsService = cService;
                     $scope.layout.colors = colors;
                     $scope.currentObject;
+                    $scope.shouldDisplayDetailsCard = false;
 
                     $scope.isTabActive = function(tab, activeTab) {
                         return tab.id === activeTab.id;
+                    }
+
+                    $scope.toggleDisplayCard = function(){
+                        $scope.shouldDisplayDetailsCard = !$scope.shouldDisplayDetailsCard;
                     }
 
                     $scope.getTabStyles = function(tab, activeTab) {

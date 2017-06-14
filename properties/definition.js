@@ -240,6 +240,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                                     label: "No"
                                 }],
                                 defaultValue: true
+                            },
+                            showDetailsButtonSwitch: {
+                                label: "Hide the details button",
+                                component: "switch",
+                                ref: "shouldHideDetailsButton",
+                                type: "boolean",
+                                options: [{
+                                    value: true,
+                                    label: "Yes"
+                                },
+                                {
+                                    value: false,
+                                    label: "No"
+                                }],
+                                defaultValue: true
                             }
                         }
                     }
