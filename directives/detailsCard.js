@@ -1,5 +1,7 @@
 define(['qvangular', 'qlik', 'text!./templates/detailsCard.html'], function(qva, qlik, ngTemplate){
 
+    var app = qlik.currApp();
+
     qva.directive('detailsCard', ['$timeout', 'qlikService', function($timeout, qlikService) {
         return {
             restrict: 'E',
@@ -15,6 +17,7 @@ define(['qvangular', 'qlik', 'text!./templates/detailsCard.html'], function(qva,
 
                 $(elem).appendTo('.qv-panel-stage');
 
+                scope.details;
                 scope.closeCard = function(ev){
                     ev.stopPropagation();
                     $(card).removeClass('start-card-animation');
@@ -32,18 +35,34 @@ define(['qvangular', 'qlik', 'text!./templates/detailsCard.html'], function(qva,
                         $(card).removeClass('finish-card-animation');
                     }, 100)
                 });
+
+                // if the active tab changes, get the object model again
+                scope.$watch('tab', function(tab){
+                    qlikService.getObjectMetadata(app, tab.objectid).then(function(metadata){
+                        scope.details = metadata;
+                    });
+                });
             }
         }
     }])
 
-    qva.directive('detailsCardButton', function(){
+    qva.directive('detailsCardButton', ['qlikService', function(qlikService){
         return {
             restrict: 'E',
-            template: '<div class="detailsButtonContainer">' +
-                '<button ng-click="toggleDisplayCard()"><span class="lui-icon lui-icon--info"></span></button></div>',
+            template: '<div ng-if="hideButton" class="detailsButtonContainer">' +
+                '<button ng-click="toggleDisplayCard()">' +
+                '<span class="lui-icon lui-icon--info"></span></button></div>',
             scope: {
-                toggleDisplayCard: '&'
+                toggleDisplayCard: '&',
+                tab: '='
+            },
+            link: function(scope) {
+                scope.hideButton = true;
+
+                qlikService.getObjectMetadata(app, scope.tab.objectid).then(function(metadata){
+                    scope.hideButton = (metadata != undefined);
+                });
             }
         }
-    });
+    }]);
 })
