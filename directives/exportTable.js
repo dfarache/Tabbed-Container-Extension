@@ -1,7 +1,7 @@
-define(['qvangular', 'qlik'], function(qva, qlik) {
+define(['qvangular', 'qlik', 'filesaver'], function(qva, qlik, FileSaver) {
 
     var app = qlik.currApp();
-
+console.log(FileSaver, new Blob);
     qva.directive('exportTableButton', ['qlikService', function(qlikService){
         return {
             restrict: 'E',
@@ -49,12 +49,9 @@ define(['qvangular', 'qlik'], function(qva, qlik) {
     }
 
     function triggerDownload(csvContent){
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement('a');
-
-        link.setAttribute('href', encodedUri)
-        link.setAttribute('download', 'data.csv');
-        document.body.appendChild(link);
-        link.click();
+        var BOM = '\uFEFF';
+        var data = BOM + csvContent;
+        var blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
+        saveAs(blob, 'data.csv');
     }
 })

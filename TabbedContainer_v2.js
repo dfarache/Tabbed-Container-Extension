@@ -1,3 +1,12 @@
+require.config({
+    paths: {
+        filesaver: './external/file-saver/FileSaver.min'
+    },
+    shim: {
+        filesaver: { exports: 'FileSaver' }
+    }
+})
+
 ﻿define([
     'jquery',
     'angular',
