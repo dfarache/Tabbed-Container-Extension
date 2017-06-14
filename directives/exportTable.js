@@ -26,8 +26,8 @@ define(['qvangular', 'qlik', 'filesaver'], function(qva, qlik, FileSaver) {
                 });
 
                 scope.exportData = function() {
-                    var csvContent = 'data:text/csv;charset=utf-8,';
-                    var dataString, encodeUri;
+                    var csvContent = '';
+                    var dataString;
 
                     scope.data.forEach(function(dataArray, index){
                         dataArray = dataArray.map(function(cell){ return cell.qText; });
