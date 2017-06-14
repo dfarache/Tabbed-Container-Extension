@@ -1,11 +1,16 @@
-define(['qvangular', 'qlik', 'text!./templates/detailsCard.html'], function(qva, qlik, ngTemplate){
+define([
+  'qvangular',
+  'qlik',
+  'text!./templates/detailsCard.html',
+  'text!./templates/detailsCardButton.html'
+], function(qva, qlik, ngTemplateCard, ngTemplateButton){
 
     var app = qlik.currApp();
 
     qva.directive('detailsCard', ['$timeout', 'qlikService', function($timeout, qlikService) {
         return {
             restrict: 'E',
-            template: ngTemplate,
+            template: ngTemplateCard,
             replace: true,
             scope: {
                 displayCard: '=',
@@ -49,9 +54,7 @@ define(['qvangular', 'qlik', 'text!./templates/detailsCard.html'], function(qva,
     qva.directive('detailsCardButton', ['qlikService', function(qlikService){
         return {
             restrict: 'E',
-            template: '<div ng-if="hideButton" class="detailsButtonContainer">' +
-                '<button ng-click="toggleDisplayCard()">' +
-                '<span class="lui-icon lui-icon--info"></span></button></div>',
+            template: ngTemplateButton,
             scope: {
                 toggleDisplayCard: '&',
                 tab: '='
