@@ -21,6 +21,15 @@ It is to be noted that currently, this feature does not work on the Desktop vers
 
 ![Tabbed-Container-Extension](assets/img/exportButton.JPG)
 
+### View the object details
+The details of the active chart can be viewed normally, just like in the native Sense objects. To do so, you'll need to activate this option from the properties panel, in the Appearance section by switching off the option *"Hide the details button"*, which is turned on by default.
+
+![Tabbed-Container-Extension](assets/img/details_settings.JPG)
+
+Once you activate this option, you'll see a information icon in the upper right corner of the container, provided that the visualization has a *qHyperCube*. You may see the details of the visualization by clicking on this icon.
+
+![Tabbed-Container-Extension](assets/img/details_example.JPG)
+
 ### Styling options
 The style of the body and the tabs may be easily modified through the options given in the "Appearance" section through the following options:
 
@@ -29,7 +38,8 @@ The style of the body and the tabs may be easily modified through the options gi
 3. Button color-picker: it sets the color of the border and of the background of the tab that is active.
 4. Additional settings:
     1. Collapse when there is 1 tab: when set to true, the tabs are hidden if there is only one object.
-    2. Hide the export button
+    2. Hide the export button.
+    3. Hide the details button.
 
 In the event that the width assigned to the extension is lower than the space needed to render the tabs, the Tabbed Container will go into stacked mode. This is bound to happen as well in mobile devices.
 
