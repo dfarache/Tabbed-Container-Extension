@@ -17,6 +17,8 @@ In the event that both parameters are given, the extension will take the input f
 ### Export the data
 The data displayed in the current visualization can be exported to CSV by clicking on the export button, which can be found in the upper right corner of the object container.
 
+It is to be noted that currently, this feature does not work on the Desktop version of Qlik Sense.
+
 ![Tabbed-Container-Extension](assets/img/exportButton.JPG)
 
 ### Styling options

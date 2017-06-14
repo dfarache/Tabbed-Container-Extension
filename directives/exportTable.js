@@ -1,4 +1,4 @@
-define(['qvangular', 'qlik'], function(qva, qlik) {
+define(['qvangular', 'qlik', 'filesaver'], function(qva, qlik, FileSaver) {
 
     var app = qlik.currApp();
 
@@ -26,8 +26,8 @@ define(['qvangular', 'qlik'], function(qva, qlik) {
                 });
 
                 scope.exportData = function() {
-                    var csvContent = 'data:text/csv;charset=utf-8,';
-                    var dataString, encodeUri;
+                    var csvContent = '';
+                    var dataString;
 
                     scope.data.forEach(function(dataArray, index){
                         dataArray = dataArray.map(function(cell){ return cell.qText; });
@@ -49,12 +49,9 @@ define(['qvangular', 'qlik'], function(qva, qlik) {
     }
 
     function triggerDownload(csvContent){
-        var encodedUri = encodeURI(csvContent);
-        var link = document.createElement('a');
-
-        link.setAttribute('href', encodedUri)
-        link.setAttribute('download', 'data.csv');
-        document.body.appendChild(link);
-        link.click();
+        var BOM = '\uFEFF';
+        var data = BOM + csvContent;
+        var blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
+        saveAs(blob, 'data.csv');
     }
 })
