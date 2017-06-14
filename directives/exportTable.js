@@ -1,7 +1,7 @@
 define(['qvangular', 'qlik', 'filesaver'], function(qva, qlik, FileSaver) {
 
     var app = qlik.currApp();
-console.log(FileSaver, new Blob);
+
     qva.directive('exportTableButton', ['qlikService', function(qlikService){
         return {
             restrict: 'E',
