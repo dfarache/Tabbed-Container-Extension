@@ -29,6 +29,9 @@
         tab="tab"
         hide-button="layout.shouldHideExportButton">
     </export-table-button>
+    <details-card-button ng-if="activeTab.id === tab.id"
+        toggle-display-card="toggleDisplayCard()">
+    </details-card-button>
     <div ng-repeat-end
         id="{{localId}}_{{tab.id}}"
         ng-show="activeTab.id === tab.id"

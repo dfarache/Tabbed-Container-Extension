@@ -141,7 +141,13 @@
   right: 20px;
 }
 
-.qv-object-TabbedContainer_v2 .tab_container .exportButtonContainer > button {
+.qv-object-TabbedContainer_v2 .tab_container .detailsButtonContainer {
+  position: absolute;
+  right: 45px;
+}
+
+.qv-object-TabbedContainer_v2 .tab_container .exportButtonContainer > button,
+.qv-object-TabbedContainer_v2 .tab_container .detailsButtonContainer > button {
   border: 0;
   cursor: pointer;
   background-color: transparent;
