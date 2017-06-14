@@ -1,14 +1,9 @@
-define(['qvangular', 'qlik'], function(qva, qlik){
+define(['qvangular', 'qlik', 'text!./templates/detailsCard.html'], function(qva, qlik, ngTemplate){
 
     qva.directive('detailsCard', ['$timeout', 'qlikService', function($timeout, qlikService) {
         return {
             restrict: 'E',
-            template: '<div ng-show="displayCard" ng-click="closeCard($event)" class="card-container"><div class="main-step-container card-custom-default">' +
-                '<div class="setup-animation q-outer-card-box"><div class="q-include-card">' +
-                '<div class="q-card-header-container ng-scope"><div class="q-card-header">' +
-                '<span>Details</span></div><div><button ng-click="closeCard($event)" class="lui-fade-button close-button" title="close">' +
-                '<span class="lui-button__icon lui-icon lui-icon--close"></span></button>' +
-                '</div></div></div></div></div></div>',
+            template: ngTemplate,
             replace: true,
             scope: {
                 displayCard: '=',
