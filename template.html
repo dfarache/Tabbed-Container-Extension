@@ -25,15 +25,19 @@
         ng-click="onTabClick($index)">
       {{tab.title}}
     </h3>
-    <export-table-button ng-if="activeTab.id === tab.id"
-        tab="tab"
-        hide-button="layout.shouldHideExportButton">
-    </export-table-button>
-    <details-card-button ng-if="activeTab.id === tab.id"
-        tab="activeTab"
-        hide-button="layout.shouldHideDetailsButton"
-        toggle-display-card="toggleDisplayCard()">
-    </details-card-button>
+    <div class="buttonsContainer">
+      <export-table-button ng-if="activeTab.id === tab.id"
+          class="tabOption"
+          tab="tab"
+          hide-button="layout.shouldHideExportButton">
+      </export-table-button>
+      <details-card-button ng-if="activeTab.id === tab.id"
+          class="tabOption"
+          tab="activeTab"
+          hide-button="layout.shouldHideDetailsButton"
+          toggle-display-card="toggleDisplayCard()">
+      </details-card-button>
+    </div>
     <div ng-repeat-end
         id="{{localId}}_{{tab.id}}"
         ng-show="activeTab.id === tab.id"
