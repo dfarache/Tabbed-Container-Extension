@@ -9,6 +9,7 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
         var service = {};
 
         service.getAllDataRows = getAllDataRows;
+        service.getObjectMetadata = getObjectMetadata;
 
         function getAllDataRows(model) {
             var qTotalData = [];
@@ -48,6 +49,20 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
             })
             return deferred.promise;
         }
+
+        function getObjectMetadata(app, objectId) {
+            var deferred = Promise.defer();
+            var metadata = { Dimensions: [], Measures: [] }
+
+            app.getObject(objectId).then(function(model){
+                metadata.Dimensions = model.layout.qHyperCube.qDimensionInfo.map(function(o){ return o.qFallbackTitle; })
+                metadata.Measures = model.layout.qHyperCube.qMeasureInfo.map(function(o){ return o.qFallbackTitle; })
+
+                deferred.resolve(metadata);
+            });
+            return deferred.promise;
+        }
+
         return service;
     });
 
