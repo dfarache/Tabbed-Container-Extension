@@ -57,13 +57,14 @@ define([
             template: ngTemplateButton,
             scope: {
                 toggleDisplayCard: '&',
-                tab: '='
+                tab: '=',
+                hideButton: '<'
             },
             link: function(scope) {
-                scope.hideButton = true;
+                scope.canDisplayDetails = false;
 
                 qlikService.getObjectMetadata(app, scope.tab.objectid).then(function(metadata){
-                    scope.hideButton = (metadata != undefined);
+                    scope.canDisplayDetails = (metadata != undefined);
                 });
             }
         }
