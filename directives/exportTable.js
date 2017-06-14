@@ -1,12 +1,16 @@
-define(['qvangular', 'qlik', 'filesaver'], function(qva, qlik, FileSaver) {
+define([
+    'qvangular',
+    'qlik',
+    'filesaver',
+    'text!./templates/exportTable.html'
+], function(qva, qlik, FileSaver, ngTemplate) {
 
     var app = qlik.currApp();
 
     qva.directive('exportTableButton', ['qlikService', function(qlikService){
         return {
             restrict: 'E',
-            template: '<div class="exportButtonContainer" ng-show="canExportData && !hideButton">' +
-                '<button ng-click="exportData()"><span class="lui-icon lui-icon--download"></span></button></div>',
+            template: ngTemplate,
             scope: {
                 tab: '=',
                 hideButton: '='
