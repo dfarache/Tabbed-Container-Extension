@@ -10,7 +10,7 @@
         ng-repeat="tab in tabItems track by $index"
         ng-click="onTabClick($index)"
         ng-class="{
-          'active': tab.id === tabItems[$index].id,
+          'active': isTabActive(tab, activeTab),
           'tab_last' : tab.id == tabItems[tabItems.length - 1].id }"
         ng-style="getTabStyles(tab, activeTab)">
       {{tab.title}}
@@ -21,17 +21,17 @@
       ng-if="tabItems.length > 0">
     <h3 ng-repeat-start="tab in tabItems"
         class="tab_drawer_heading"
-        ng-class="{'d_active': activeTab.id === tab.id }"
+        ng-class="{'d_active': isTabActive(tab) }"
         ng-click="onTabClick($index)">
       {{tab.title}}
     </h3>
     <div class="buttonsContainer">
-      <export-table-button ng-if="activeTab.id === tab.id"
+      <export-table-button ng-if="isTabActive(tab)"
           class="tabOption"
           tab="tab"
           hide-button="layout.shouldHideExportButton">
       </export-table-button>
-      <details-card-button ng-if="activeTab.id === tab.id"
+      <details-card-button ng-if="isTabActive(tab)"
           class="tabOption"
           tab="activeTab"
           hide-button="layout.shouldHideDetailsButton"
@@ -40,7 +40,7 @@
     </div>
     <div ng-repeat-end
         id="{{localId}}_{{tab.id}}"
-        ng-show="activeTab.id === tab.id"
+        ng-show="isTabActive(tab)"
         class="tab_content qvobject">
     </div>
   </div>

@@ -69,18 +69,18 @@ require.config({
                     $scope.currentObject;
                     $scope.shouldDisplayDetailsCard = false;
 
-                    $scope.isTabActive = function(tab, activeTab) {
-                        return tab.id === activeTab.id;
+                    $scope.isTabActive = function(tab) {
+                        return tab.id === $scope.activeTab.id;
                     }
 
                     $scope.toggleDisplayCard = function(){
                         $scope.shouldDisplayDetailsCard = !$scope.shouldDisplayDetailsCard;
                     }
 
-                    $scope.getTabStyles = function(tab, activeTab) {
+                    $scope.getTabStyles = function(tab) {
                         var buttonBackground = colorsService.hexToRgb(colors.palette[$scope.layout.buttonColor])
 
-                        return $scope.isTabActive(tab, activeTab) ?
+                        return $scope.isTabActive(tab) ?
                             {
                                 'background-color': colorsService.toString(buttonBackground, 0.2),
                                 'border-color': colorsService.toString(buttonBackground)
