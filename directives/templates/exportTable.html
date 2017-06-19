@@ -1,5 +1,13 @@
-<div class="exportButtonContainer" ng-show="canExportData && !hideButton">
+<div class="exportButtonContainer" ng-show="!hideButton">
   <button ng-click="exportData()">
     <span class="lui-icon lui-icon--download"></span>
   </button>
 </div>
+
+
+<loading-modal
+    ng-if="displayDataLoadingModal"
+    is-loading-data="isLoadingData"
+    export-data="exportData()"
+    display-modal="displayDataLoadingModal">
+</loading-modal>
