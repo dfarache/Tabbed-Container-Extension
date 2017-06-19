@@ -61,8 +61,6 @@ define([
                 hideButton: '<'
             },
             link: function(scope) {
-                scope.canDisplayDetails = false;
-
                 qlikService.getObjectMetadata(app, scope.tab.objectid).then(function(metadata){
                     scope.canDisplayDetails = (metadata != undefined);
                 });
