@@ -158,6 +158,11 @@
   background-position: center;
 }
 
+.qv-object-TabbedContainer_v2 .tab_container .buttonsContainer button.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 /* Fixing the native bubbles in the upper left corner */
 .qv-object-TabbedContainer_v2 .qv-object-nav {
   top: 43px;

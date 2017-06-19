@@ -18,7 +18,6 @@ define([
             },
             link: function(scope){
                 scope.table, scope.data;
-                scope.canExportData = false;
                 scope.displayDataLoadingModal = false;
                 scope.isLoadingData = true;
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
@@ -31,6 +30,8 @@ define([
                     if(data instanceof Array && data.length > 0){
                         scope.canExportData = true;
                         scope.data = data;
+                    } else {
+                        scope.canExportData = false;
                     }
                 });
 
