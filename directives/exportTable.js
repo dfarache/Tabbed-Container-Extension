@@ -67,6 +67,11 @@ define([
                     scope.displayModal = false;
                     scope.exportData();
                 }
+
+                scope.closeModal = function(ev){
+                    ev.stopPropagation();
+                    scope.displayModal = false;
+                }
             }
         }
     })
