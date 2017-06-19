@@ -1,5 +1,8 @@
-<div ng-if="canDisplayDetails && !hideButton" class="detailsButtonContainer">
-  <button ng-click="toggleDisplayCard()">
+<div ng-if="!hideButton" class="detailsButtonContainer">
+  <button ng-click="toggleDisplayCard()"
+      ng-disabled="canDisplayDetails === false"
+      ng-class="{ 'disabled': canDisplayDetails === false }"
+      ng-attr-title="{{canDisplayDetails === false ? 'The details of this object cannot be displayed' : 'Display object details'}}">
     <span class="lui-icon lui-icon--info"></span>
   </button>
 </div>
