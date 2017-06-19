@@ -1,5 +1,16 @@
-<div class="exportButtonContainer" ng-show="canExportData && !hideButton">
-  <button ng-click="exportData()">
+<div class="exportButtonContainer" ng-show="!hideButton">
+  <button ng-click="exportData()"
+      ng-disabled="canExportData === false"
+      ng-class="{'disabled': canExportData === false}"
+      ng-attr-title="{{ canExportData === false ? 'This object cannot be exported' : undefined }}">
     <span class="lui-icon lui-icon--download"></span>
   </button>
 </div>
+
+
+<loading-modal
+    ng-if="displayDataLoadingModal"
+    is-loading-data="isLoadingData"
+    export-data="exportData()"
+    display-modal="displayDataLoadingModal">
+</loading-modal>
