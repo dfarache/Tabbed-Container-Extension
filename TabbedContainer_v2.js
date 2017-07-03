@@ -70,7 +70,7 @@ require.config({
                     $scope.shouldDisplayDetailsCard = false;
 
                     $scope.isTabActive = function(tab) {
-                        return tab.id === $scope.activeTab.id;
+                        return $scope.activeTab != null && tab.id === $scope.activeTab.id;
                     }
 
                     $scope.toggleDisplayCard = function(){
@@ -117,7 +117,9 @@ require.config({
                         $scope.tabItems = tabService.getTabInfo($scope);
 
                         if(prevNumberTabs === 0 && $scope.tabItems.length > 0){
-                            $scope.onTabClick(0);
+                            $timeout(function() {
+                                $scope.onTabClick(0);
+                            }, 200)
                         } else if($scope.tabItems.length > 0){
                             // if active tab is -1, then it was removed
                             var activeTabIndex = -1;
