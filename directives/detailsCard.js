@@ -43,6 +43,7 @@ define([
 
                 // if the active tab changes, get the object model again
                 scope.$watch('tab', function(tab){
+                    if(tab == null || tab.objectid == null) { return; }                    
                     qlikService.getObjectMetadata(app, tab.objectid).then(function(metadata){
                         scope.details = metadata;
                     });
