@@ -13,7 +13,7 @@ define([
             restrict: 'E',
             template: ngTemplateButton,
             scope: {
-                tab: '=',
+                activeTab: '=',
                 hideButton: '='
             },
             link: function(scope){
@@ -22,7 +22,7 @@ define([
                 scope.isLoadingData = true;
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
-                app.getObject(scope.tab.objectid).then(function(model){
+                app.getObject(scope.activeTab.objectid).then(function(model){
                     return qlikService.getAllDataRows(model);
                 }).then(function(data){
                     scope.isLoadingData = false;
