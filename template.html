@@ -19,7 +19,7 @@
   <div class="tab_container with-border"
       ng-class="{'expanded': tabItems.length === 1 && layout.shouldCollapseTabs }"
       ng-if="tabItems.length > 0">
-    <h3 ng-repeat-start="tab in tabItems"
+    <h3 ng-repeat-start="tab in tabItems track by $index"
         class="tab_drawer_heading"
         ng-class="{'d_active': isTabActive(tab) }"
         ng-click="onTabClick($index)">

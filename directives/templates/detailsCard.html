@@ -21,7 +21,7 @@
                 <span>Dimensions</span>
                 <span class="item-count">({{details.Dimensions.length}})</span>
               </div>
-              <div class="item" ng-repeat="dimension in details.Dimensions">
+              <div class="item" ng-repeat="dimension in details.Dimensions track by $index">
                 <div class="item-title">
                   {{ dimension }}
                 </div>
@@ -32,7 +32,7 @@
                 <span>Measures</span>
                 <span class="item-count">({{details.Measures.length}})</span>
               </div>
-              <div class="item" ng-repeat="measure in details.Measures">
+              <div class="item" ng-repeat="measure in details.Measures track by $index">
                 <div class="item-title">
                   {{ measure }}
                 </div>
