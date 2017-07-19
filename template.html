@@ -28,12 +28,12 @@
     <div class="buttonsContainer">
       <export-table-button ng-if="isTabActive(tab)"
           class="tabOption"
-          tab="tab"
+          active-tab="tab"
           hide-button="layout.shouldHideExportButton">
       </export-table-button>
       <details-card-button ng-if="isTabActive(tab)"
           class="tabOption"
-          tab="activeTab"
+          active-tab="activeTab"
           hide-button="layout.shouldHideDetailsButton"
           toggle-display-card="toggleDisplayCard()">
       </details-card-button>
@@ -46,4 +46,4 @@
   </div>
 </div>
 
-<details-card display-card="shouldDisplayDetailsCard" tab="activeTab"></details-card>
+<details-card display-card="shouldDisplayDetailsCard" active-tab="activeTab"></details-card>

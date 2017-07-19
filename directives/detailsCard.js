@@ -11,10 +11,9 @@ define([
         return {
             restrict: 'E',
             template: ngTemplateCard,
-            replace: true,
             scope: {
                 displayCard: '=',
-                tab: '='
+                activeTab: '='
             },
             link: function(scope, elem) {
                 var container = $(elem);
@@ -42,8 +41,8 @@ define([
                 });
 
                 // if the active tab changes, get the object model again
-                scope.$watch('tab', function(tab){
-                    if(tab == null || tab.objectid == null) { return; }                    
+                scope.$watch('activeTab', function(tab){
+                    if(tab == null || tab.objectid == null) { return; }
                     qlikService.getObjectMetadata(app, tab.objectid).then(function(metadata){
                         scope.details = metadata;
                     });
@@ -58,11 +57,11 @@ define([
             template: ngTemplateButton,
             scope: {
                 toggleDisplayCard: '&',
-                tab: '=',
+                activeTab: '=',
                 hideButton: '<'
             },
             link: function(scope) {
-                qlikService.getObjectMetadata(app, scope.tab.objectid).then(function(metadata){
+                qlikService.getObjectMetadata(app, scope.activeTab.objectid).then(function(metadata){
                     scope.canDisplayDetails = (metadata != undefined);
                 });
             }
