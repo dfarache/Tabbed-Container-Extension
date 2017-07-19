@@ -58,8 +58,15 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
                 if(model.layout.qHyperCube == undefined) {
                     deferred.resolve();
                 } else {
-                    metadata.Dimensions = model.layout.qHyperCube.qDimensionInfo.map(function(o){ return o.qFallbackTitle; })
-                    metadata.Measures = model.layout.qHyperCube.qMeasureInfo.map(function(o){ return o.qFallbackTitle; })
+                    metadata.Dimensions = model.layout.qHyperCube.qDimensionInfo.map(function(o){
+                        return o.qFallbackTitle == null || o.qFallbackTitle.length <= 1 ?
+                            o.qGroupFieldDefs[0] : o.qFallbackTitle;
+                    });
+
+                    metadata.Measures = model.layout.qHyperCube.qMeasureInfo.map(function(o){
+                        return o.qFallbackTitle == null || o.qFallbackTitle.length <= 1 ?
+                            o.qAttrExprInfo[0].qFallbackTitle : o.qFallbackTitle;
+                    });
 
                     deferred.resolve(metadata);
                 }
