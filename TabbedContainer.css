@@ -71,8 +71,7 @@
 
 .qv-object-TabbedContainer_v2 .tab_content {
   padding: 40px 20px 10px;
-  height: calc(100% - 1px);
-  position: absolute;
+  height: calc(100% - 1px);  
   width: calc(100% - 0px);
   box-sizing: border-box;
 }
