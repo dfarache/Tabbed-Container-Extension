@@ -71,7 +71,7 @@
 
 .qv-object-TabbedContainer_v2 .tab_content {
   padding: 40px 20px 10px;
-  height: calc(100% - 1px);  
+  height: calc(100% - 1px);
   width: calc(100% - 0px);
   box-sizing: border-box;
 }
@@ -146,6 +146,7 @@
   flex-direction: row;
   min-width: 50px;
   justify-content: flex-end;
+  z-index: 500;
 }
 
 .qv-object-TabbedContainer_v2 .tab_container .buttonsContainer > .tabOption:not(:first-child) {
