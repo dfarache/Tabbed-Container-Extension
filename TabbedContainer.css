@@ -70,8 +70,10 @@
 }
 
 .qv-object-TabbedContainer_v2 .tab_content {
-  padding: 20px;
-  height: calc(100% - 40px);
+  padding: 40px 20px 10px;
+  height: calc(100% - 1px);
+  width: calc(100% - 0px);
+  box-sizing: border-box;
 }
 
 @media (max-height:700px) {
@@ -138,12 +140,13 @@
 
 .qv-object-TabbedContainer_v2 .tab_container .buttonsContainer {
   position: absolute;
-  top: 3px;
+  top: 20px;
   right: 20px;
   display: flex;
   flex-direction: row;
   min-width: 50px;
   justify-content: flex-end;
+  z-index: 500;
 }
 
 .qv-object-TabbedContainer_v2 .tab_container .buttonsContainer > .tabOption:not(:first-child) {
