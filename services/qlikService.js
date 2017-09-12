@@ -9,6 +9,7 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
         var service = {};
 
         service.getAllDataRows = getAllDataRows;
+        service.getAllStackedDataRows = getAllStackedDataRows;
         service.getObjectMetadata = getObjectMetadata;
 
         function getAllDataRows(model) {
@@ -46,6 +47,20 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
                         deferred.resolve(dataHeaders.concat(qTotalData));
                     })
                 }
+            })
+            return deferred.promise;
+        }
+
+        function getAllStackedDataRows(model) {
+            var deferred = Promise.defer();
+
+            if(model.layout.qHyperCube == null) { return deferred.resolve(qTotalData); }
+
+            model.getHyperCubeStackData('/qHyperCubeDef', initialDataFetch).then(function(data) {
+                var dataHeaders = getHeaders(model);
+                var qMatrix = buildStackedMatrix([], [], data[0].qData[0]);
+
+                deferred.resolve(dataHeaders.concat(qMatrix));
             })
             return deferred.promise;
         }
@@ -96,5 +111,21 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
         measures = measures.map(function(measure){ return { qText: measure.qFallbackTitle }; })
 
         return [ dimensions.concat(measures) ];
+    }
+
+    function buildStackedMatrix(matrix, row, data) {
+        for(var i=0; i<data.qSubNodes.length; i++) {
+            var subnode = data.qSubNodes[i];
+            var newRow = row.concat([subnode]);
+
+            if(subnode.qSubNodes != null && subnode.qSubNodes.length > 0) {
+                buildStackedMatrix(matrix, newRow, subnode);
+            } else {
+                matrix.push(newRow);
+                buildStackedMatrix(matrix, [], subnode);
+            }
+        }
+
+        return matrix;
     }
 })

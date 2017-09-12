@@ -23,7 +23,11 @@ define([
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
                 app.getObject(scope.activeTab.objectid).then(function(model){
-                    return qlikService.getAllDataRows(model);
+                    if(model.layout.visualization === 'barchart' && model.layout.barGrouping.grouping === 'stacked') {
+                        return qlikService.getAllStackedDataRows(model);
+                    } else {
+                        return qlikService.getAllDataRows(model);
+                    }
                 }).then(function(data){
                     scope.isLoadingData = false;
 
