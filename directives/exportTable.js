@@ -23,7 +23,15 @@ define([
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
                 app.getObject(scope.activeTab.objectid).then(function(model){
-                    return qlikService.getAllDataRows(model);
+                    var numDimensions = model.layout.qHyperCube.qDimensionInfo.length;
+                    var layout = model.layout;
+                    var isStackedBarchart = layout.visualization === 'barchart' && layout.barGrouping.grouping === 'stacked';
+
+                    if(numDimensions > 1 && (isStackedBarchart || layout.visualization === 'linechart')) {
+                        return qlikService.getAllStackedDataRows(model);
+                    } else {
+                        return qlikService.getAllDataRows(model);
+                    }
                 }).then(function(data){
                     scope.isLoadingData = false;
 
