@@ -1,6 +1,6 @@
 require.config({
     paths: {
-        filesaver: './external/file-saver/FileSaver.min'
+        filesaver: 'https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.3/FileSaver.min'
     },
     shim: {
         filesaver: { exports: 'FileSaver' }
