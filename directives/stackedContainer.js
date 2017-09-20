@@ -9,9 +9,16 @@ define(["jquery", "qvangular", "qlik"], function($, qva, qlik) {
                 // execute if the width of the container changes
                 $scope.$watch(function(){
                     return $element.find(".tab_container").width();
-                }, function(newValue){                    
+                }, function(newValue){
                     stackContainer($element);
-                })
+                });
+
+                // or if the number of tabs changes
+                $scope.$watch(function(){                  
+                    return $element.find(".buttonTab").length;
+                }, function(newValue){
+                    stackContainer($element);
+                });
             }
         }
     })
