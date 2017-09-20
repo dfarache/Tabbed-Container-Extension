@@ -38,8 +38,12 @@ define(["jquery", "qvangular", "qlik"], function($, qva, qlik) {
             outerHeight += 40;  // padding for the item
 
             $element.find("div.tab_content:visible").height($element.find(".tab_container").height() - outerHeight);
+            $element.find("div.buttonsContainer").each(function(i) {
+                $(this).css("top", (20 + (30 * i)) + "px");
+            });
         } else {
             $element.find("div.tab_content:visible").css('height', 'inherit');
+            $element.find("div.buttonsContainer").css('top', '20px');
         }
     }
 });
