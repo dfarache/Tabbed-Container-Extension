@@ -22,37 +22,45 @@ define([
                 scope.isLoadingData = true;
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
-                app.getObject(scope.activeTab.objectid).then(function(model){
-                    var numDimensions = model.layout.qHyperCube.qDimensionInfo.length;
-                    var layout = model.layout;
-                    var isStackedBarchart = layout.visualization === 'barchart' && layout.barGrouping.grouping === 'stacked';
-
-                    if(numDimensions > 1 && (isStackedBarchart || layout.visualization === 'linechart')) {
-                        return qlikService.getAllStackedDataRows(model);
-                    } else if(layout.visualization === 'pivot-table') {
-                        return qlikService.getAllPivotDataRows(model);
-                    } else {
-                        return qlikService.getAllDataRows(model);
-                    }
-                }).then(function(data){
-                    scope.isLoadingData = false;
-
-                    if(data instanceof Array && data.length > 0){
-                        scope.canExportData = true;
-                        scope.data = data;
-                    } else {
-                        scope.canExportData = false;
-                    }
+                // check if the object has a qhypercube. if it doesn't, it can't be exported
+                app.getObject(scope.activeTab.objectid).then(function(model) {
+                    scope.canExportData = (model.layout.qHyperCube != null);
                 });
 
+                scope.getObjectData = function(){
+                    if(!scope.canExportData) { return; }
+
+                    return app.getObject(scope.activeTab.objectid).then(function(model){
+                        var numDimensions = model.layout.qHyperCube.qDimensionInfo.length;
+                        var layout = model.layout;
+                        var isStackedBarchart = layout.visualization === 'barchart' && layout.barGrouping.grouping === 'stacked';
+
+                        if(numDimensions > 1 && (isStackedBarchart || layout.visualization === 'linechart')) {
+                            return qlikService.getAllStackedDataRows(model);
+                        } else {
+                            return qlikService.getAllDataRows(model);
+                        }
+                    })
+                }
+
+                scope.prepareDataForDownload = function() {
+                    scope.displayDataLoadingModal = true;
+                    scope.isLoadingData = true;
+
+                    scope.getObjectData().then(function(data) {
+                          scope.isLoadingData = false;
+
+                          if(data instanceof Array && data.length > 0){
+                              scope.canExportData = true;
+                              scope.data = data;
+                          } else {
+                              scope.canExportData = false;
+                          }
+                    });
+                }
+
                 scope.exportData = function() {
-                    if(scope.isLoadingData) {
-                        scope.displayDataLoadingModal = true;
-                    } else {
-                        triggerDownload(
-                            arrayToCsv(scope.data)
-                        );
-                    }
+                    triggerDownload( arrayToCsv(scope.data) );
                 }
             }
         }
@@ -79,8 +87,8 @@ define([
                 }
 
                 scope.closeModal = function(ev){
-                    ev.stopPropagation();
                     scope.displayModal = false;
+                    ev.stopPropagation();
                 }
             }
         }
