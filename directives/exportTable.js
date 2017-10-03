@@ -47,15 +47,6 @@ define([
                     scope.displayDataLoadingModal = true;
                     scope.isLoadingData = true;
 
-                    if(numDimensions > 1 && (isStackedBarchart || layout.visualization === 'linechart')) {
-                        return qlikService.getAllStackedDataRows(model);
-                    } else if(layout.visualization === 'pivot-table') {
-                        return qlikService.getAllPivotDataRows(model);
-                    } else {
-                        return qlikService.getAllDataRows(model);
-                    }
-                }).then(function(data){
-                    scope.isLoadingData = false;
                     scope.getObjectData().then(function(data) {
                           scope.isLoadingData = false;
 
