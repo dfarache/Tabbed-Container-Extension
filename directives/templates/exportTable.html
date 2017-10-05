@@ -1,5 +1,5 @@
 <div class="exportButtonContainer" ng-show="!hideButton">
-  <button ng-click="exportData()"
+  <button ng-click="prepareDataForDownload()"
       ng-disabled="canExportData === false"
       ng-class="{'disabled': canExportData === false}"
       ng-attr-title="{{ canExportData === false ? 'This object cannot be exported' : undefined }}">
@@ -8,8 +8,7 @@
 </div>
 
 
-<loading-modal
-    ng-if="displayDataLoadingModal"
+<loading-modal  
     is-loading-data="isLoadingData"
     export-data="exportData()"
     display-modal="displayDataLoadingModal">
