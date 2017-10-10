@@ -10,6 +10,7 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
 
         service.getAllDataRows = getAllDataRows;
         service.getAllStackedDataRows = getAllStackedDataRows;
+        service.getAllPivotDataRows = getAllPivotDataRows;
         service.getObjectMetadata = getObjectMetadata;
 
         function getAllDataRows(model) {
@@ -32,7 +33,7 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
                     var promises = Array.apply(null, new Array(numberOfPages)).map(function (data, index) {
                         return model.getHyperCubeData('/qHyperCubeDef', [getNextPage(pageHeight,index, columns)]);
                     }, this);
-                    Promise.all(promises).then(function(data){                        
+                    Promise.all(promises).then(function(data){
                         for (var j = 0; j < data.length; j++) {
                             if (data[j].qDataPages) {
                                 for (var k1 = 0; k1 < data[j].qDataPages[0].qMatrix.length; k1++) {
@@ -61,6 +62,21 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
                 var qMatrix = buildStackedMatrix([], [], data[0].qData[0]);
 
                 deferred.resolve(dataHeaders.concat(qMatrix));
+            })
+            return deferred.promise;
+        }
+
+        function getAllPivotDataRows(model) {
+            var deferred = Promise.defer();
+
+            model.getHyperCubePivotData('/qHyperCubeDef', initialDataFetch).then(function(data) {
+                var headers = getPivotHeaders(model, data[0].qTop);
+                var partialMatrix = getPivotDimensionRows([], [], data[0].qLeft);
+                partialMatrix = adjustPartialMatrix(partialMatrix);
+
+                var qMatrix = buildPivotMatrix(partialMatrix, data[0].qData);
+
+                deferred.resolve(headers.concat(qMatrix));
             })
             return deferred.promise;
         }
@@ -111,6 +127,59 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
         measures = measures.map(function(measure){ return { qText: measure.qFallbackTitle }; })
 
         return [ dimensions.concat(measures) ];
+    }
+
+    function getPivotHeaders(model, pivotMeasures){
+        var dimensions = model.layout.qHyperCube.qDimensionInfo;
+        var measures = pivotMeasures;
+
+        dimensions = dimensions.map(function(dim){ return { qText: dim.qFallbackTitle }; })
+        measures = measures.map(function(measure) { return { qText: measure.qText}; })
+
+        return [ dimensions.concat(measures) ];
+    }
+
+    function getPivotDimensionRows(matrix, row, data){
+        for(var i=0; i<data.length; i++) {
+            var current = data[i];
+            var newRow = row.concat({ qText: current.qText })
+
+            if(current.qSubNodes != null && current.qSubNodes.length > 0 && current.qSubNodes[0].qType !== 'E' ) {
+                getPivotDimensionRows(matrix, newRow, current.qSubNodes);
+            } else {
+                matrix.push(newRow);
+                getPivotDimensionRows(matrix, [], current);
+            }
+        }
+
+        return matrix;
+    }
+
+    function adjustPartialMatrix(partialMatrix){
+        var maxWidth = 0;
+
+        partialMatrix.forEach(function(elem){
+            if(elem.length > maxWidth) { maxWidth = elem.length; }
+        });
+
+        partialMatrix.forEach(function(elem) {
+            if(elem.length < maxWidth) {
+                for(var i=elem.length; i<maxWidth; i++) {
+                    elem[i] = { qText: '' };
+                }
+            }
+        });
+        return partialMatrix;
+    }
+
+    function buildPivotMatrix(partialMatrix, tableData) {
+        var matrix = [];
+
+        for(var i=0; i<partialMatrix.length; i++) {
+            matrix.push(partialMatrix[i].concat(tableData[i]))
+        }
+
+        return matrix;
     }
 
     function buildStackedMatrix(matrix, row, data) {
