@@ -140,13 +140,13 @@
 
 .qv-object-TabbedContainer_v2 .tab_container .buttonsContainer {
   position: absolute;
-  top: 20px;
+  top: 3px;
   right: 20px;
   display: flex;
   flex-direction: row;
   min-width: 50px;
   justify-content: flex-end;
-  z-index: 500;
+  z-index:99999;
 }
 
 .qv-object-TabbedContainer_v2 .tab_container .buttonsContainer > .tabOption:not(:first-child) {
