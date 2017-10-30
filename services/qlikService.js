@@ -72,6 +72,8 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
             model.getHyperCubePivotData('/qHyperCubeDef', initialDataFetch).then(function(data) {
                 var headers = getPivotHeaders(model, data[0].qTop);
                 var partialMatrix = getPivotDimensionRows([], [], data[0].qLeft);
+
+                headers = adjustHeaders(headers, partialMatrix);
                 partialMatrix = adjustPartialMatrix(partialMatrix);
 
                 var qMatrix = buildPivotMatrix(partialMatrix, data[0].qData);
@@ -133,8 +135,8 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
         var dimensions = model.layout.qHyperCube.qDimensionInfo;
         var measures = pivotMeasures;
 
-        dimensions = dimensions.map(function(dim){ return { qText: dim.qFallbackTitle }; })
-        measures = measures.map(function(measure) { return { qText: measure.qText}; })
+        dimensions = dimensions.map(function(dim){ return { qText: dim.qFallbackTitle, qType: 'dimension' }; })
+        measures = measures.map(function(measure) { return { qText: measure.qText, qType: 'measure' }; })
 
         return [ dimensions.concat(measures) ];
     }
@@ -170,6 +172,18 @@ define(['qlik', 'qvangular', 'angular'], function(qlik, qva, angular){
             }
         });
         return partialMatrix;
+    }
+
+    function adjustHeaders(headers, partialMatrix) {
+        var maxWidth = 0;
+        var dimensions = headers[0].filter(function(o) { return o.qType === 'dimension'; })
+        var measures = headers[0].filter(function(o) { return o.qType === 'measure'; })
+
+        partialMatrix.forEach(function(elem){
+            if(elem.length > maxWidth) { maxWidth = elem.length; }
+        });
+
+        return [ dimensions.splice(0, maxWidth).concat(measures) ];
     }
 
     function buildPivotMatrix(partialMatrix, tableData) {
