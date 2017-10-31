@@ -21,7 +21,7 @@ It is to be noted that currently, *this feature does not work on the Desktop ver
 
 ![Tabbed-Container-Extension](assets/img/exportButton.JPG)
 
-By default, the data is exported as a tab separated CSV file. However, it is possible to select other delimiters (comma and semicolon) from the properties pannel.
+By default, the data is exported as a tab separated CSV file. However, it is possible to select other delimiters (comma and semicolon) from the properties panel.
 
 ### View the object details
 The details of the active chart can be viewed normally, just like in the native Sense objects. To do so, you'll need to activate this option from the properties panel, in the Appearance section by switching off the option *"Hide the details button"*, which is turned on by default.
