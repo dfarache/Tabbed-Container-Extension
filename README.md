@@ -17,9 +17,11 @@ In the event that both parameters are given, the extension will take the input f
 ### Export the data
 The data displayed in the current visualization can be exported to CSV by clicking on the export button, which can be found in the upper right corner of the object container.
 
-It is to be noted that currently, this feature does not work on the Desktop version of Qlik Sense.
+It is to be noted that currently, *this feature does not work on the Desktop version of Qlik Sense*.
 
 ![Tabbed-Container-Extension](assets/img/exportButton.JPG)
+
+By default, the data is exported as a tab separated CSV file. However, it is possible to select other delimiters (comma and semicolon) from the properties pannel.
 
 ### View the object details
 The details of the active chart can be viewed normally, just like in the native Sense objects. To do so, you'll need to activate this option from the properties panel, in the Appearance section by switching off the option *"Hide the details button"*, which is turned on by default.
@@ -38,8 +40,9 @@ The style of the body and the tabs may be easily modified through the options gi
 3. Button color-picker: it sets the color of the border and of the background of the tab that is active.
 4. Additional settings:
     1. Collapse when there is 1 tab: when set to true, the tabs are hidden if there is only one object.
-    2. Hide the export button.
-    3. Hide the details button.
+    2. Hide the details button.
+    3. Hide the export button.
+    4. Format of the exported CSV.
 
 In the event that the width assigned to the extension is lower than the space needed to render the tabs, the Tabbed Container will go into stacked mode. This is bound to happen as well in mobile devices.
 
