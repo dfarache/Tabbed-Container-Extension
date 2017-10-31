@@ -226,6 +226,21 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                                 }],
                                 defaultValue: false
                             },
+                            showDetailsButtonSwitch: {
+                                label: "Hide the details button",
+                                component: "switch",
+                                ref: "shouldHideDetailsButton",
+                                type: "boolean",
+                                options: [{
+                                    value: true,
+                                    label: "Yes"
+                                },
+                                {
+                                    value: false,
+                                    label: "No"
+                                }],
+                                defaultValue: true
+                            },
                             showExportButtonSwitch: {
                                 label: "Hide the export button",
                                 component: "switch",
@@ -241,20 +256,23 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                                 }],
                                 defaultValue: true
                             },
-                            showDetailsButtonSwitch: {
-                                label: "Hide the details button",
-                                component: "switch",
-                                ref: "shouldHideDetailsButton",
-                                type: "boolean",
-                                options: [{
-                                    value: true,
-                                    label: "Yes"
-                                },
-                                {
-                                    value: false,
-                                    label: "No"
-                                }],
-                                defaultValue: true
+                            exportFormat: {
+                                type: 'string',
+                                component: 'dropdown',
+                                label: 'Format of the exported file',
+                                ref: 'exportFormat',
+                                defaultValue: '\t',
+                                options: function(props) {
+                                    return props.shouldHideExportButton
+                                        ? [{ label: '<--Turn off the switch above-->', value: '\t'}]
+                                        : [{
+                                              label: 'Tab Separated', value: '\t'
+                                          }, {
+                                              label: 'Comma Separated', value: ','
+                                          }, {
+                                              label: 'Semicolon Separated', value: ';'
+                                          }]
+                                }
                             }
                         }
                     }

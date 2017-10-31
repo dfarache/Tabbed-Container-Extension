@@ -14,12 +14,14 @@ define([
             template: ngTemplateButton,
             scope: {
                 activeTab: '=',
-                hideButton: '='
+                hideButton: '=',
+                csvSeparator: '='
             },
             link: function(scope){
                 scope.table, scope.data;
                 scope.displayDataLoadingModal = false;
                 scope.isLoadingData = true;
+                scope.csvSeparator = (typeof scope.csvSeparator === 'string') ? scope.csvSeparator : '\t';
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
                 // check if the object has a qhypercube. if it doesn't, it can't be exported
@@ -62,7 +64,7 @@ define([
                 }
 
                 scope.exportData = function() {
-                    triggerDownload( arrayToCsv(scope.data) );
+                    triggerDownload( arrayToCsv(scope.data, scope.csvSeparator) );
                 }
             }
         }
@@ -103,13 +105,13 @@ define([
         });
     }
 
-    function arrayToCsv(data){
+    function arrayToCsv(data, csvSeparator){
         var csvContent = '';
         var dataString;
 
         data.forEach(function(dataArray, index){
             dataArray = dataArray.map(function(cell){ return cell.qText; });
-            dataString = dataArray.join(',');
+            dataString = dataArray.join(csvSeparator);
             csvContent += (index < data.length) ? dataString + '\n' : dataString;
         });
 
