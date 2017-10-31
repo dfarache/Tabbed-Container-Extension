@@ -20,318 +20,155 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
     		return defer.promise;
   	};
 
-    return {
+    var maxNumberTabs = 5;
+    var properties = {
         type: "items",
         component: "accordion",
         uses: "settings",
-        items: {
-            tab1: {
-                type: "items",
-                label: "Tab 1",
-
-                items: {
-                    tab1Title: {
-                        type: "string",
-                        label: "Title",
-                        ref: "tab1Title",
-                        defaultValue: "",
-                        expression: "optional"
-                    },
-                    tab1ObjectId: {
-                        type: "string",
-                        label: "Object ID",
-                        ref: "tab1ObjectId",
-                        defaultValue: ""
-                    },
-                    tab1MasterItem: {
-                        label: "Master Item",
-                        component: "dropdown",
-                        type: "string",
-                        ref: "tab1MasterItem",
-                        defaultValue: "",
-                        options: function () {
-			                       return getMasterObjectList();
-		                    }
-                    }
-                }
-            },
-            tab2: {
-                type: "items",
-                label: "Tab 2",
-                items: {
-                    tab2Title: {
-                        type: "string",
-                        label: "Title",
-                        ref: "tab2Title",
-                        defaultValue: "",
-                        expression: "optional"
-                    },
-                    tab2ObjectId: {
-                        type: "string",
-                        label: "Object ID",
-                        ref: "tab2ObjectId",
-                        defaultValue: ""
-                    },
-                    tab2MasterItem: {
-                        label: "Master Item",
-                        component: "dropdown",
-                        type: "string",
-                        ref: "tab2MasterItem",
-                        defaultValue: "",
-                        options: function () {
-			                       return getMasterObjectList();
-		                    }
-                    }
-                }
-            },
-            tab3: {
-                type: "items",
-                label: "Tab 3",
-                items: {
-                    tab3Title: {
-                        type: "string",
-                        label: "Title",
-                        ref: "tab3Title",
-                        defaultValue: "",
-                        expression: "optional"
-                    },
-                    tab3ObjectId: {
-                        type: "string",
-                        label: "Object ID",
-                        ref: "tab3ObjectId",
-                        defaultValue: ""
-                    },
-                    tab3MasterItem: {
-                        label: "Master Item",
-                        component: "dropdown",
-                        type: "string",
-                        ref: "tab3MasterItem",
-                        defaultValue: "",
-                        options: function () {
-                             return getMasterObjectList();
-                        }
-                    }
-                }
-            },
-            tab4: {
-                type: "items",
-                label: "Tab 4",
-                items: {
-                    tab4Title: {
-                        type: "string",
-                        label: "Title",
-                        ref: "tab4Title",
-                        defaultValue: "",
-                        expression: "optional"
-                    },
-                    tab4ObjectId: {
-                        type: "string",
-                        label: "Object ID",
-                        ref: "tab4ObjectId",
-                        defaultValue: ""
-                    },
-                    tab4MasterItem: {
-                        label: "Master Item",
-                        component: "dropdown",
-                        type: "string",
-                        ref: "tab4MasterItem",
-                        defaultValue: "",
-                        options: function () {
-                             return getMasterObjectList();
-                        }
-                    }
-                }
-            },
-            tab5: {
-                type: "items",
-                label: "Tab 5",
-                items: {
-                    tab5Title: {
-                        type: "string",
-                        label: "Title",
-                        ref: "tab5Title",
-                        defaultValue: "",
-                        expression: "optional"
-                    },
-                    tab5ObjectId: {
-                        type: "string",
-                        label: "Object ID",
-                        ref: "tab5ObjectId",
-                        defaultValue: ""
-                    },
-                    tab5MasterItem: {
-                        label: "Master Item",
-                        component: "dropdown",
-                        type: "string",
-                        ref: "tab5MasterItem",
-                        defaultValue: "",
-                        options: function () {
-                             return getMasterObjectList();
-                        }
-                    }
-                }
-            },
-            settings: {
-                uses: "settings",
-                items: {
-						        borderColorPicker: {
-							          label: "Border color-picker",
-							          component: "color-picker",
-							          ref: "borderColor",
-							          type: "integer",
-							          defaultValue: 8
-						        },
-                    backgroundColor: {
-                        type: "items",
-                        label: "Background color",
-                        items: {
-                            backgroundColorPicker: {
-                                label: "background color-picker",
-                                component: "color-picker",
-                                ref: "backgroundColor",
-                                type: "integer",
-                                defaultValue: 10
-                            },
-                            backgroundColorCode: {
-                                type: "string",
-                                label: "Color code",
-                                ref: "backgroundColorCode",
-                                defaultValue: ""
-                            }
-                        }
-                    },
-                    buttonColorPicker: {
-                        label: "Button color-picker",
-                        component: "color-picker",
-                        ref: "buttonColor",
-                        type: "integer",
-                        defaultValue: 8
-                    },
-                    additionalSettings: {
-                        type: "items",
-                        label: "Additional Settings",
-                        items: {
-                            showTabsSwitch: {
-                                label: "Collapse when there is 1 tab",
-                                component: "switch",
-                                ref: "shouldCollapseTabs",
-                                type: "boolean",
-                                options: [{
-                                    value: true,
-                                    label: "Yes"
-                                },
-                                {
-                                    value: false,
-                                    label: "No"
-                                }],
-                                defaultValue: false
-                            },
-                            showDetailsButtonSwitch: {
-                                label: "Hide the details button",
-                                component: "switch",
-                                ref: "shouldHideDetailsButton",
-                                type: "boolean",
-                                options: [{
-                                    value: true,
-                                    label: "Yes"
-                                },
-                                {
-                                    value: false,
-                                    label: "No"
-                                }],
-                                defaultValue: true
-                            },
-                            showExportButtonSwitch: {
-                                label: "Hide the export button",
-                                component: "switch",
-                                ref: "shouldHideExportButton",
-                                type: "boolean",
-                                options: [{
-                                    value: true,
-                                    label: "Yes"
-                                },
-                                {
-                                    value: false,
-                                    label: "No"
-                                }],
-                                defaultValue: true
-                            },
-                            exportFormat: {
-                                type: 'string',
-                                component: 'dropdown',
-                                label: 'Format of the exported file',
-                                ref: 'exportFormat',
-                                defaultValue: '\t',
-                                options: function(props) {
-                                    return props.shouldHideExportButton
-                                        ? [{ label: '<--Turn off the switch above-->', value: '\t'}]
-                                        : [{
-                                              label: 'Tab Separated', value: '\t'
-                                          }, {
-                                              label: 'Comma Separated', value: ','
-                                          }, {
-                                              label: 'Semicolon Separated', value: ';'
-                                          }]
-                                }
-                            }
-                        }
-                    }
-					      }
-            }
-        },
-        link: {
-            type: "items",
-            label: "Link Details",
-            items: {
-                linkDetails: {
-                    defaultValue: "none",
-                    type: "string",
-                    component: "dropdown",
-                    label: "Type",
-                    ref: "linkType",
-                    options: [{
-                        value: "none",
-                        label: "None"
-                    }, {
-                        value: "sheet",
-                        label: "Sheet"
-                    }, {
-                        value: "url",
-                        label: "URL"
-                    }]
-                },
-                linkSheet: {
-                    ref: "linkSheetID",
-                    label: "Sheet ID",
-                    type: "string",
-                    defaultValue: "",
-                    show: function(data) {
-                        return data.linkType === "sheet";
-                    }
-                },
-                linkUrl: {
-                    ref: "linkUrl",
-                    label: "URL",
-                    type: "string",
-                    defaultValue: "",
-                    show: function(data) {
-                        return data.linkType === "url";
-                    }
-                },
-                linkText: {
-                    ref: "linkText",
-                    label: "Link text",
-                    type: "string",
-                    defaultValue: "",
-                    show: function(data) {
-                        return data.linkType === "url" || data.linkType === "sheet";
-                    }
-                }
-            }
-        },
-        settings: {
-            uses: "settings"
-        }
+        items: {}
     };
 
+    for(var i=1; i< maxNumberTabs+1; i++) {
+        properties.items['tab' + i] = {
+            type: "items",
+            label: "Tab " + i,
+            items: {}
+        }
+
+        properties.items['tab' + i]['items']['tab' + i + 'Title'] = {
+            type: 'string',
+            label: 'Title',
+            ref: 'tab' + i + 'Title',
+            defaultValue: '',
+            expression: 'optional'
+        }
+
+        properties.items['tab' + i]['items']['tab' + i + 'ObjectId'] = {
+            type: 'string',
+            label: 'Object ID',
+            ref: 'tab' + i + 'ObjectId',
+            defaultValue: ''
+        }
+
+        properties.items['tab' + i]['items']['tab' + i + 'MasterItem'] = {
+            label: 'Master Item',
+            component: 'dropdown',
+            type: 'string',
+            ref: 'tab' + i + 'MasterItem',
+            defaultValue: '',
+            options: function () {
+                 return getMasterObjectList();
+            }
+        }
+    }
+
+    properties.items.settings = {
+        uses: "settings",
+        items: {
+            borderColorPicker: {
+                label: "Border color-picker",
+                component: "color-picker",
+                ref: "borderColor",
+                type: "integer",
+                defaultValue: 8
+            },
+            backgroundColor: {
+                type: "items",
+                label: "Background color",
+                items: {
+                    backgroundColorPicker: {
+                        label: "background color-picker",
+                        component: "color-picker",
+                        ref: "backgroundColor",
+                        type: "integer",
+                        defaultValue: 10
+                    },
+                    backgroundColorCode: {
+                        type: "string",
+                        label: "Color code",
+                        ref: "backgroundColorCode",
+                        defaultValue: ""
+                    }
+                }
+            },
+            buttonColorPicker: {
+                label: "Button color-picker",
+                component: "color-picker",
+                ref: "buttonColor",
+                type: "integer",
+                defaultValue: 8
+            },
+            additionalSettings: {
+                type: "items",
+                label: "Additional Settings",
+                items: {
+                    showTabsSwitch: {
+                        label: "Collapse when there is 1 tab",
+                        component: "switch",
+                        ref: "shouldCollapseTabs",
+                        type: "boolean",
+                        options: [{
+                            value: true,
+                            label: "Yes"
+                        },
+                        {
+                            value: false,
+                            label: "No"
+                        }],
+                        defaultValue: false
+                    },
+                    showDetailsButtonSwitch: {
+                        label: "Hide the details button",
+                        component: "switch",
+                        ref: "shouldHideDetailsButton",
+                        type: "boolean",
+                        options: [{
+                            value: true,
+                            label: "Yes"
+                        },
+                        {
+                            value: false,
+                            label: "No"
+                        }],
+                        defaultValue: true
+                    },
+                    showExportButtonSwitch: {
+                        label: "Hide the export button",
+                        component: "switch",
+                        ref: "shouldHideExportButton",
+                        type: "boolean",
+                        options: [{
+                            value: true,
+                            label: "Yes"
+                        },
+                        {
+                            value: false,
+                            label: "No"
+                        }],
+                        defaultValue: true
+                    },
+                    exportFormat: {
+                        type: 'string',
+                        component: 'dropdown',
+                        label: 'Format of the exported file',
+                        ref: 'exportFormat',
+                        defaultValue: '\t',
+                        options: function(props) {
+                            return props.shouldHideExportButton
+                                ? [{ label: '<--Turn off the switch above-->', value: '\t'}]
+                                : [{
+                                      label: 'Tab Separated', value: '\t'
+                                  }, {
+                                      label: 'Comma Separated', value: ','
+                                  }, {
+                                      label: 'Semicolon Separated', value: ';'
+                                  }]
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    return properties;
 });
