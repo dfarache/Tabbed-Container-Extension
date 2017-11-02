@@ -21,7 +21,6 @@ define([
                 scope.table, scope.data;
                 scope.displayDataLoadingModal = false;
                 scope.isLoadingData = true;
-                scope.csvSeparator = (typeof scope.csvSeparator === 'string') ? scope.csvSeparator : '\t';
                 scope.hideButton = (typeof scope.hideButton === 'boolean') ? scope.hideButton : true;
 
                 // check if the object has a qhypercube. if it doesn't, it can't be exported
@@ -64,7 +63,7 @@ define([
                 }
 
                 scope.exportData = function() {
-                    triggerDownload( arrayToCsv(scope.data, scope.csvSeparator) );
+                    triggerDownload( arrayToCsv(scope.data, getExportFormat(scope.csvSeparator)) );
                 }
             }
         }
@@ -99,29 +98,47 @@ define([
     })
 
     /** PRIVATE FUNCTIONS */
+    function getExportFormat(formatType){
+        var validTypes = ['CSV', 'TSV', 'SSV', 'XLSX'];
+        formatType = (typeof formatType === 'string' && validTypes.indexOf(formatType) !== -1)
+            ? formatType
+            : 'TSV';
+
+        switch (formatType) {
+            case 'CSV':
+                return { separator: ',', file: '.csv', type: 'text/csv;charset=utf-8' };
+            case 'TSV':
+                return { separator: '\t', file: '.csv', type: 'text/csv;charset=utf-8' };
+            case 'SSV':
+                return { separator: ';', file: '.csv', type: 'text/csv;charset=utf-8' };
+            case 'XLSX':
+                return { separator: ',', file: '.xls', type: 'application/xls'  }
+        }
+    }
+
     function getHypercubeData(hypercube){
         return hypercube.qHyperCube.qDataPages[0].qMatrix.map(function(row) {
             return row.map(function(cell){ return cell.qText; })
         });
     }
 
-    function arrayToCsv(data, csvSeparator){
+    function arrayToCsv(data, exportFormat){
         var csvContent = '';
         var dataString;
 
         data.forEach(function(dataArray, index){
             dataArray = dataArray.map(function(cell){ return cell.qText; });
-            dataString = dataArray.join(csvSeparator);
+            dataString = dataArray.join(exportFormat.separator);
             csvContent += (index < data.length) ? dataString + '\n' : dataString;
         });
 
-        return csvContent;
+        return { data: csvContent, exportFormat: exportFormat };
     }
 
-    function triggerDownload(csvContent){
+    function triggerDownload(content){
         var BOM = '\uFEFF';
-        var data = BOM + csvContent;
-        var blob = new Blob([data], { type: 'text/csv;charset=utf-8' });
-        saveAs(blob, 'data.csv');
+        var data = BOM + content.data;
+        var blob = new Blob([data], { type: content.exportFormat.type });
+        saveAs(blob, 'data' + content.exportFormat.file);
     }
 })
