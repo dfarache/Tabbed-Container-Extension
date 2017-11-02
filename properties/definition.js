@@ -155,13 +155,15 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         defaultValue: '\t',
                         options: function(props) {
                             return props.shouldHideExportButton
-                                ? [{ label: '<--Turn off the switch above-->', value: '\t'}]
+                                ? [{ label: '<--Turn off the switch above-->', value: 'TSV'}]
                                 : [{
-                                      label: 'Tab Separated', value: '\t'
+                                      label: 'Tab Separated CSV', value: 'TSV'
                                   }, {
-                                      label: 'Comma Separated', value: ','
+                                      label: 'Comma Separated CSV', value: 'CSV'
                                   }, {
-                                      label: 'Semicolon Separated', value: ';'
+                                      label: 'Semicolon Separated CSV', value: 'SSV',
+                                  }, {
+                                      label: 'Excel File', value: 'XLSX'
                                   }]
                         }
                     }
