@@ -29,7 +29,8 @@
       <export-table-button ng-if="isTabActive(tab)"
           class="tabOption"
           active-tab="tab"
-          hide-button="layout.shouldHideExportButton">
+          hide-button="layout.shouldHideExportButton"
+          csv-separator="layout.exportFormat">
       </export-table-button>
       <details-card-button ng-if="isTabActive(tab)"
           class="tabOption"
