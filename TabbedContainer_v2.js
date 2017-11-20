@@ -46,12 +46,12 @@ require.config({
                 if(layout.backgroundColorCode.length > 0) {
                     var tileBackground = layout.backgroundColorCode;
                 } else {
-                    var tileBackgroundRgb = colorsService.hexToRgb(colors.palette[layout.backgroundColor]);
+                    var tileBackgroundRgb = colorsService.hexToRgb(layout.backgroundColor);
                     var tileBackground = colorsService.toString(tileBackgroundRgb, 0.2);
                 }
 
                 // Paint the border and the background of the object container
-                var tileBorder = colorsService.hexToRgb(colors.palette[layout.borderColor]);
+                var tileBorder = colorsService.hexToRgb(layout.borderColor);
                 $element.find('.tab_container').css('border-color', colorsService.toString(tileBorder));
                 $element.find('.tab_content').css('background-color', tileBackground);
 
@@ -78,7 +78,7 @@ require.config({
                     }
 
                     $scope.getTabStyles = function(tab) {
-                        var buttonBackground = colorsService.hexToRgb(colors.palette[$scope.layout.buttonColor])
+                        var buttonBackground = colorsService.hexToRgb($scope.layout.buttonColor)
 
                         return $scope.isTabActive(tab) ?
                             {

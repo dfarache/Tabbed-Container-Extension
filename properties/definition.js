@@ -1,6 +1,8 @@
 define(["qlik", 'ng!$q'], function(qlik, $q) {
 
+    var global = qlik.getGlobal(this);
     var app = qlik.currApp(this);
+    var version;
 
   	function getMasterObjectList () {
   	     var defer = $q.defer();
@@ -19,6 +21,10 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
     		});
     		return defer.promise;
   	};
+
+    global.getProductVersion(function(reply){
+        version = parseInt(reply.qReturn.split('.')[0]);
+    });
 
     var maxNumberTabs = 5;
     var properties = {
@@ -69,8 +75,9 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                 label: "Border color-picker",
                 component: "color-picker",
                 ref: "borderColor",
-                type: "integer",
-                defaultValue: 8
+                type: (version >= 4) ? "object" : "integer",
+                defaultValue: 8,
+                dualOutput: true
             },
             backgroundColor: {
                 type: "items",
@@ -80,8 +87,9 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                         label: "background color-picker",
                         component: "color-picker",
                         ref: "backgroundColor",
-                        type: "integer",
-                        defaultValue: 10
+                        defaultValue: 10,
+                        type: (version >= 4) ? "object" : "integer",
+                        dualOutput: true
                     },
                     backgroundColorCode: {
                         type: "string",
@@ -95,8 +103,9 @@ define(["qlik", 'ng!$q'], function(qlik, $q) {
                 label: "Button color-picker",
                 component: "color-picker",
                 ref: "buttonColor",
-                type: "integer",
-                defaultValue: 8
+                defaultValue: 8,
+                type: (version >= 4) ? "object" : "integer",
+                dualOutput: true
             },
             additionalSettings: {
                 type: "items",
