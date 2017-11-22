@@ -127,7 +127,12 @@ define([
         var dataString;
 
         data.forEach(function(dataArray, index){
-            dataArray = dataArray.map(function(cell){ return cell.qText; });
+            dataArray = dataArray.map(function(cell){
+                return (cell.qState === 'L' && cell.qNum != null && cell.qNum != "NaN")
+                ? cell.qNum
+                : cell.qText;
+            });
+
             dataString = dataArray.join(exportFormat.separator);
             csvContent += (index < data.length) ? dataString + '\n' : dataString;
         });
